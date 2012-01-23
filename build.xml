@@ -1,0 +1,80 @@
+<project name="danny-t.co.uk" default="default">
+	<property environment="env."/>
+
+	<!-- tools used to assist the build process. -->
+	<property name="tools.dir" value="${basedir}/build/tools" />
+	<property name="yuicompressor.jar" value="${tools.dir}/yuicompressor-2.4.6/yuicompressor-2.4.6.jar" />
+	<property name="lessc.cmd" value="${tools.dir}/lessc/lessc.cmd" />
+
+	<!-- directory where all the script src is located. -->
+	<property name="scripts.dir" value="${basedir}/scripts" />
+
+	<!-- css information -->
+	<property name="css.dir" value="${basedir}/css" />
+	<property name="css.src.dir" value="${scripts.dir}/css" />
+	<property name="less.src.dir" value="${scripts.dir}/less" />
+
+	<!-- js information -->
+	<property name="js.dir" value="${basedir}/js" />
+	<property name="js.src.dir" value="${scripts.dir}/js" />
+	<property name="js.libs.src.dir" value="${js.src.dir}\libs" />
+
+	<!-- specifies the order of the build process -->
+	<target name="default" depends="clean, prepare, less, css, js" />
+
+	<!-- deletes any folders that would have been created from a previous build. -->
+	<target name="clean">
+		<echo>cleaning</echo>
+
+		<delete dir="${css.dir}" />
+		<delete dir="${js.dir}" />
+	</target>
+
+	<!-- creates any directories that are required for the build process. -->
+	<target name="prepare">
+		<mkdir dir="${css.dir}" />
+		<mkdir dir="${js.dir}" />
+	</target>
+
+	<!-- converts any .less files into .css files. -->
+	<target name="less">
+		<exec dir="${basedir}" executable="${lessc.cmd}" failifexecutionfails='true'>
+			<arg line='"${less.src.dir}/style.less" "${css.dir}/site.css"' />
+		</exec>
+	</target>
+
+	<!-- 
+		joins all the required css files into a single css file that can be loaded individually to save
+		any bottleneck that can be caused by too many css / js requests on load.
+	-->	
+	<target name="css">
+		<concat destfile="${basedir}/style.css" overwrite="yes">
+			<fileset file="${css.src.dir}/theme-info.css" />
+			<fileset file="${css.src.dir}/normalize.css" />
+			<fileset file="${css.dir}/site.css" />
+		</concat>
+	</target>
+
+	<!--
+		performs a few of jobs. 
+			- concats all the library js files into plugins.js
+			- concats all site specific scripts into script.js
+			- moves modenizr to the js folder
+	-->
+	<target name="js">
+		<!-- modenizr is not included in the plugins as it is loaded in the <head> tag. -->
+		<copy todir="${js.dir}" file="${js.libs.src.dir}\modernizr-2.0.6.min.js" />
+
+		<!-- concat all third party libraries into a single .js file. -->
+		<concat destfile="${js.dir}/plugins.js">
+			<fileset file="${js.libs.src.dir}/jquery-1.7.1.min.js" />
+		</concat>
+
+		<!-- 
+			copies the custom script files to the js folder, when more custom 
+			js files are present, should be a similiar process as for the third
+			party libraries where all the scripts are concat into a single js file. 
+		-->
+		<copy todir="${js.dir}" file="${js.src.dir}/scripts.js" />
+	</target>
+</project>
