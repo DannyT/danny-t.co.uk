@@ -1,37 +1,41 @@
-<project name="danny-t.co.uk" default="default">
+<project name="danny-t.co.uk" default="default" basedir="../">
 	<property environment="env."/>
+
+	<!-- deploy directory -->
+	<property name="deploy.dir" value="${basedir}/deploy" />
+	<property name="wordpresstheme.dir" value="../Danny-T.co.uk/wp-content/themes/dannyt" />
 
 	<!-- tools used to assist the build process. -->
 	<property name="tools.dir" value="${basedir}/build/tools" />
 	<property name="yuicompressor.jar" value="${tools.dir}/yuicompressor-2.4.6/yuicompressor-2.4.6.jar" />
 	<property name="lessc.cmd" value="${tools.dir}/lessc/lessc.cmd" />
+	<property name="iisexpress.bat" value="${tools.dir}/iisexpress/iisexpresslauncher.bat" />
 
 	<!-- directory where all the script src is located. -->
 	<property name="scripts.dir" value="${basedir}/scripts" />
 
 	<!-- css information -->
-	<property name="css.dir" value="${basedir}/css" />
+	<property name="css.dir" value="${deploy.dir}/css" />
 	<property name="css.src.dir" value="${scripts.dir}/css" />
 	<property name="less.src.dir" value="${scripts.dir}/less" />
 
 	<!-- js information -->
-	<property name="js.dir" value="${basedir}/js" />
+	<property name="js.dir" value="${deploy.dir}/js" />
 	<property name="js.src.dir" value="${scripts.dir}/js" />
 	<property name="js.libs.src.dir" value="${js.src.dir}\libs" />
 
 	<!-- specifies the order of the build process -->
-	<target name="default" depends="clean, prepare, less, css, js" />
+	<target name="default" depends="clean, prepare, less, css, js, php" />
 
 	<!-- deletes any folders that would have been created from a previous build. -->
 	<target name="clean">
 		<echo>cleaning</echo>
-
-		<delete dir="${css.dir}" />
-		<delete dir="${js.dir}" />
+		<delete dir="${deploy.dir}" />
 	</target>
 
 	<!-- creates any directories that are required for the build process. -->
 	<target name="prepare">
+		<mkdir dir="${deploy.dir}" />
 		<mkdir dir="${css.dir}" />
 		<mkdir dir="${js.dir}" />
 	</target>
@@ -48,7 +52,7 @@
 		any bottleneck that can be caused by too many css / js requests on load.
 	-->	
 	<target name="css">
-		<concat destfile="${basedir}/style.css" overwrite="yes">
+		<concat destfile="${deploy.dir}/style.css" overwrite="yes">
 			<fileset file="${css.src.dir}/theme-info.css" />
 			<fileset file="${css.src.dir}/normalize.css" />
 			<fileset file="${css.dir}/site.css" />
@@ -57,7 +61,7 @@
 
 	<!--
 		performs a few of jobs. 
-			- concats all the library js files into plugins.js
+			 concats all the library js files into plugins.js
 			- concats all site specific scripts into script.js
 			- moves modenizr to the js folder
 	-->
@@ -76,5 +80,37 @@
 			party libraries where all the scripts are concat into a single js file. 
 		-->
 		<copy todir="${js.dir}" file="${js.src.dir}/scripts.js" />
+	</target>
+
+	<!--
+		Copy theme php files to deploy folder
+	-->
+	<target name="php">
+		<copy todir="${deploy.dir}">
+    		<fileset dir="src" />
+  		</copy>
+	</target>
+
+	<!-- opens default web browser (windows only) -->
+	<macrodef name="openInBrowser">
+	   <attribute name="url"/>
+	   <sequential>
+	      <exec dir="${basedir}" executable="rundll32.exe">
+	         <arg line="url.dll, FileProtocolHandler"/>
+	         <arg line="@{url}"/>
+	      </exec>
+	   </sequential>     
+	</macrodef>
+
+	<!--
+		Calls batch file which starts iis express then opens browser
+	-->
+	<target name="launch">
+		<delete dir="${wordpresstheme.dir}" />
+		<copy todir="${wordpresstheme.dir}">
+    		<fileset dir="${deploy.dir}" />
+  		</copy>
+		<exec executable="${iisexpress.bat}" spawn="true" />
+		<openInBrowser url="http://localhost:65464"/>
 	</target>
 </project>
