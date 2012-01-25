@@ -25,7 +25,7 @@
 	<property name="js.libs.src.dir" value="${js.src.dir}\libs" />
 
 	<!-- specifies the order of the build process -->
-	<target name="default" depends="clean, prepare, less, css, js, php" />
+	<target name="default" depends="clean, prepare, less, css, js, php, deploy" />
 
 	<!-- deletes any folders that would have been created from a previous build. -->
 	<target name="clean">
@@ -91,6 +91,13 @@
   		</copy>
 	</target>
 
+	<target name="deploy">
+		<delete dir="${wordpresstheme.dir}" />
+		<copy todir="${wordpresstheme.dir}">
+    		<fileset dir="${deploy.dir}" />
+  		</copy>
+  	</target>
+
 	<!-- opens default web browser (windows only) -->
 	<macrodef name="openInBrowser">
 	   <attribute name="url"/>
@@ -106,10 +113,6 @@
 		Calls batch file which starts iis express then opens browser
 	-->
 	<target name="launch">
-		<delete dir="${wordpresstheme.dir}" />
-		<copy todir="${wordpresstheme.dir}">
-    		<fileset dir="${deploy.dir}" />
-  		</copy>
 		<exec executable="${iisexpress.bat}" spawn="true" />
 		<openInBrowser url="http://localhost:65464"/>
 	</target>

@@ -32,5 +32,5 @@
 
 <body>
   <header>
-    <h1><?php bloginfo( "name" ) ?></h1>
+    <h1><a href="<?php echo get_option('home'); ?>"><?php bloginfo( "name" ) ?></a></h1>
   </header>
