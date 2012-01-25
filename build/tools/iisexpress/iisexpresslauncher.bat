@@ -1,1 +1,1 @@
-"\Program files\IIS Express\iisexpress" /site:Danny-t.co.uk /config:"%userprofile%\Projects\Danny-t.co.uk Theme\build\tools\iisexpress\applicationhost.config"
+"\Program files\IIS Express\iisexpress" /site:Danny-t.co.uk /config:"%CD%\build\tools\iisexpress\applicationhost.config"

@@ -1,9 +1,18 @@
 <project name="danny-t.co.uk" default="default" basedir="../">
 	<property environment="env."/>
 
-	<!-- deploy directory -->
-	<property name="deploy.dir" value="${basedir}/deploy" />
+	<!-- 
+		Wordpress installation 
+		I have a local wordpress install in a folder next to my theme development project
+		this makes it possible to deploy the theme and run the site easily
+	-->
 	<property name="wordpresstheme.dir" value="../Danny-T.co.uk/wp-content/themes/dannyt" />
+
+	<!-- 
+		Deploy directory 
+		Basically the release build of the theme
+	-->
+	<property name="deploy.dir" value="${basedir}/deploy" />
 
 	<!-- tools used to assist the build process. -->
 	<property name="tools.dir" value="${basedir}/build/tools" />

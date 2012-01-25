@@ -24,13 +24,7 @@
 	"folders":
 	[
 		{
-			"path": "src"
-		},
-		{
-			"path": "build"
-		},
-		{
-			"path": "scripts"
+			"path": "."
 		}
 	]
 }
