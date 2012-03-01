@@ -19,18 +19,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-
-  <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-  
+  <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/style.css">
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
   <!-- All JavaScript at the bottom, except this Modernizr build incl. Respond.js
        Respond is a polyfill for min/max-width media queries. Modernizr enables HTML5 elements & feature detects; 
        for optimal performance, create your own custom Modernizr build: www.modernizr.com/download/ -->
-  <script src="<?php bloginfo( "template_url" ); ?>js/libs/modernizr-2.0.6.min.js"></script>
+  <script src="<?php bloginfo( "template_url" ); ?>/js/modernizr-2.0.6.min.js"></script>
 </head>
 
 <body>
-  <header>
+  <header role="banner">
     <h1><a href="<?php echo get_option('home'); ?>"><?php bloginfo( "name" ) ?></a></h1>
+    <nav>
+      <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'false', 'menu_class' => 'wp-menu'  ) ); ?>
+    </nav>
+    <a class="improveon" href="http://improve-on.com/submit/danny-t.co.uk">Improve-on this site</a>
   </header>
+  
+  <div role="main" id="main">

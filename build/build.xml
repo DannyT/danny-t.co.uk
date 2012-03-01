@@ -62,6 +62,7 @@
 	-->	
 	<target name="css">
 		<concat destfile="${deploy.dir}/style.css" overwrite="yes">
+			<fileset file="${css.src.dir}/imports.css" />
 			<fileset file="${css.src.dir}/theme-info.css" />
 			<fileset file="${css.src.dir}/normalize.css" />
 			<fileset file="${css.dir}/site.css" />
