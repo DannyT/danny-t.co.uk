@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 DT.global.showMenu = function (event) {
     if (DT.global.menu.is(":visible"))
-    	DT.global.menu.slideUp();
+    	DT.global.menu.slideUp({complete:function(){$(this).css('display','')}});
 	else
 	    DT.global.menu.slideDown();
 }
