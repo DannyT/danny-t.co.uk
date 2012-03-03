@@ -13,6 +13,10 @@
 			<header>
 				<h2><?php the_title(); ?></h2>
 			</header>
+			<div class="publish-date">
+				<span class="day-of-month"><?php the_time('d') ?></span>
+				<span class="month"><?php the_time('M') ?></span>
+			</div>
 			<?php the_content(); ?>
 		</article>
 	<?php endwhile ?>
