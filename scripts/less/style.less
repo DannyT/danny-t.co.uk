@@ -3,6 +3,33 @@
 body {
 	background-color: #DCDCDC;
 	color: #000;
+	font: 1.1em 'Simonetta', cursive;
+	line-height:1.5;
+	word-spacing: 4px;
+}
+
+h1 {
+	font: normal 40px 'Annie Use Your Telescope', cursive;
+	margin: 0 20px;
+	text-shadow: #000 -1px 1px;
+}
+
+h2{
+	font: 2.3em 'Annie Use Your Telescope', cursive;
+	margin: 0;
+	a{
+		color: #000;
+		text-decoration:none;
+		text-shadow: gray -1px 1px;
+
+		&:hover{
+		color: #77a809;
+		}
+	}
+}
+
+article{
+	margin-bottom:3em;
 }
 
 header[role="banner"]{
@@ -11,18 +38,19 @@ header[role="banner"]{
 	min-width:320px;
 	overflow: auto;
 	top:0px;
-	h1{
-		font: normal 40px 'Annie Use Your Telescope', cursive;
-		margin: 0 20px;
-		text-shadow: #000 -1px 1px;
-	}
 
 	a{
 		color: white;
 		text-decoration: none;
+		
+		&:hover{
+			text-decoration:underline;
+		}
 	}
 	
+	
 	.menu-button{
+		cursor: pointer;
 		display: block;
 		position: absolute;
 		right: 15px;
@@ -36,8 +64,7 @@ header[role="banner"]{
 			border:1px solid #74b807;
 			display:inline-block;
 			color:#ffffff;
-			font-size:15px;
-			font-weight:bold;
+			font: bold 15px sans-serif;
 			padding:3px 20px;
 			text-decoration:none;
 			text-shadow:1px 1px 0px #528009;
@@ -63,16 +90,18 @@ header[role="banner"]{
 	}
 }
 
-
-
-#main{
-	background-color: #fff;
+.main{
 	margin: 0 auto;
-	margin-bottom: 30px;
-	margin-top: 30px;
-	padding: 10px 10px;
-	.rounded(9px);
-	max-width: 800px;
+	max-width: 800px;	
+	padding: 0 10px 0 10px;
+	.main-content{
+		.box-shadow(-2px 2px 5px #B8B8B8);
+		background-color: #fff;
+		margin-bottom: 30px;
+		margin-top: 30px;
+		padding: 10px 10px;
+		.rounded(9px);
+	}
 }
 
 .improveon{
@@ -83,6 +112,21 @@ header[role="banner"]{
 } 
 
 @media screen and (min-width: 480px) {
+	article{
+		.publish-date{
+			.box-shadow(-2px 2px 5px #B8B8B8);
+			background-color:#fff;
+			margin-left:-50px;
+			margin-top: -50px;
+			width:40px;
+			text-align:center;
+			
+			.day-of-month{
+				font-size:140%;
+				font-weight:bold;
+			}
+		}
+	}
 
 	.js header[role="banner"]{
 		nav ul{ 
@@ -95,7 +139,9 @@ header[role="banner"]{
 			display: none;
 		}
 	}
-
+	.main{
+		padding-left:40px;
+	}
 	.improveon {
       display: block;
   	}

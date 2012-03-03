@@ -51,7 +51,7 @@
 
 	<!-- converts any .less files into .css files. -->
 	<target name="less">
-		<exec dir="${basedir}" executable="${lessc.cmd}" failifexecutionfails='true'>
+		<exec dir="${basedir}" executable="${lessc.cmd}" failifexecutionfails='true' failonerror="true">
 			<arg line='"${less.src.dir}/style.less" "${css.dir}/site.css"' />
 		</exec>
 	</target>
