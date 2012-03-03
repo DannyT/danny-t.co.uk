@@ -25,7 +25,7 @@
   background: -moz-linear-gradient(center bottom,
                                    @start 0%,
                                    @stop 100%);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=@start, endColorstr=@stop);
+  filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorStr="@stop~", EndColorStr="@start~")";
 }
 .bw-gradient(@color: #F5F5F5, @start: 0, @stop: 255) {
   background: @color;
