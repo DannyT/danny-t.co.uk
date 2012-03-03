@@ -7,7 +7,6 @@ body {
 
 header[role="banner"]{
 	.gradient(#1E395A, #1E395A, #47729F);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1E395A', endColorstr='#47729F');
 	height:100%;
 	min-width:320px;
 	overflow: auto;
@@ -22,24 +21,18 @@ header[role="banner"]{
 		color: white;
 		text-decoration: none;
 	}
-
-	.menu{
+	
+	.menu-button{
+		display: block;
 		position: absolute;
 		right: 15px;
 		top:17px;
 		text-align:center;
-		/* imageless css button by CSSButtonGenerator.com */
+		/* imageless css button by CSSButtonGenerator.com then less-ified */
 		a {
-			-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
-			-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
-			box-shadow:inset 0px 1px 0px 0px #a4e271;
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809) );
-			background:-moz-linear-gradient( center top, #89c403 5%, #77a809 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809');
-			background-color:#89c403;
-			-moz-border-radius:6px;
-			-webkit-border-radius:6px;
-			border-radius:6px;
+			.box-shadow(inset 0px 1px 0px 0px #a4e271);
+			.gradient(#89c403, #89c403, #77a809);
+			.rounded(6px);
 			border:1px solid #74b807;
 			display:inline-block;
 			color:#ffffff;
@@ -50,10 +43,7 @@ header[role="banner"]{
 			text-shadow:1px 1px 0px #528009;
 		}
 		a:hover {
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403) );
-			background:-moz-linear-gradient( center top, #77a809 5%, #89c403 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403');
-			background-color:#77a809;
+			.gradient(#77a809, #77a809, #89c403);
 		}
 		a:active {
 			position:relative;
@@ -94,10 +84,15 @@ header[role="banner"]{
 
 @media screen and (min-width: 480px) {
 
-	.js header[role="banner"] nav ul{ 
-		display: block; 
-		li{
-			display: inline;
+	.js header[role="banner"]{
+		nav ul{ 
+			display: block; 
+			li{
+				display: inline;
+			}
+		}
+		.menu-button{
+			display: none;
 		}
 	}
 

@@ -12,10 +12,9 @@ $(document).ready(function(){
 	DT.global.header = $("header");
 	DT.global.nav = $("header nav");
 	DT.global.menu = $("header nav ul");
+	DT.global.menuButton = $(".menu-button");
 
-	DT.global.menuButton = $("<div class='menu'><a href='#'>menu</a></div>");
 	DT.global.menuButton.click(DT.global.showMenu);
-	DT.global.header.append(DT.global.menuButton);
 })
 
 DT.global.showMenu = function (event) {

@@ -35,6 +35,7 @@
       <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'false', 'menu_class' => 'wp-menu'  ) ); ?>
     </nav>
     <a class="improveon" href="http://improve-on.com/submit/danny-t.co.uk">Improve-on this site</a>
+    <div class='menu-button'><a href='#'>menu</a></div>
   </header>
   
   <div role="main" id="main">
