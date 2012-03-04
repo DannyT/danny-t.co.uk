@@ -18,6 +18,8 @@
 				<span class="month"><?php the_time('M') ?></span>
 			</div>
 			<?php the_content(); ?>
+
+			<?php wp_link_pages(); ?>
 		</article>
 	<?php endwhile ?>
 	
