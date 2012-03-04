@@ -93,6 +93,7 @@ header[role="banner"]{
 .main{
 	margin: 0 auto;
 	max-width: 800px;	
+	overflow: hidden;
 	position: relative;
 	padding: 0 10px 0 10px;
 	.main-content{
@@ -100,17 +101,33 @@ header[role="banner"]{
 		background-color: #fff;
 		margin-bottom: 30px;
 		margin-top: 30px;
-		overflow: hidden;
+
 		padding: 10px 10px;
 		.rounded(9px);
 	}
 }
 
-.aligncenter {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 98%;
+    height: auto;
+    &.wp-smiley {
+		border: none;
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
 }
+
+.wp-caption {
+    margin-bottom: 1.625em;
+    max-width: 96%;
+    padding: 9px;
+    font-size: 0.7em;
+    text-align:center;
+}
+
 
 .alignleft {
 	display: inline;
@@ -123,30 +140,12 @@ header[role="banner"]{
 	float: right;
 	margin-left: 1.625em;
 }
-
-.wp-caption {
-	padding: 0;
-
-	img {
-		margin: 0 auto;
-		width:100%;
-	}
-	
-	.wp-caption-text {
-		background: black;
-		background: rgba(0, 0, 0, 0.65);
-		color: white;
-		font-size:0.9em;
-		height: 32px;
-		margin: -40px 0 0 0;
-		overflow: hidden;
-		padding:0;
-		position: relative;
-		text-align:center;
-		white-space: nowrap;
-		z-index: 3;
-	}
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 
 .addthis_toolbox{
 	position:absolute;

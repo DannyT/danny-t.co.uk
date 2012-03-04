@@ -26,6 +26,7 @@
        Respond is a polyfill for min/max-width media queries. Modernizr enables HTML5 elements & feature detects; 
        for optimal performance, create your own custom Modernizr build: www.modernizr.com/download/ -->
   <script src="<?php bloginfo( "template_url" ); ?>/js/modernizr-2.0.6.min.js"></script>
+  <?php wp_head(); ?>
 </head>
 
 <body>
