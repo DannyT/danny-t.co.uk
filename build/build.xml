@@ -62,7 +62,6 @@
 	-->	
 	<target name="css">
 		<concat destfile="${deploy.dir}/style.css" overwrite="yes">
-			<fileset file="${css.src.dir}/imports.css" />
 			<fileset file="${css.src.dir}/theme-info.css" />
 			<fileset file="${css.src.dir}/normalize.css" />
 			<fileset file="${css.dir}/site.css" />
@@ -78,11 +77,9 @@
 	<target name="js">
 		<!-- modenizr is not included in the plugins as it is loaded in the <head> tag. -->
 		<copy todir="${js.dir}" file="${js.libs.src.dir}\modernizr-2.0.6.min.js" />
-
-		<!-- concat all third party libraries into a single .js file. -->
-		<concat destfile="${js.dir}/plugins.js">
-			<fileset file="${js.libs.src.dir}/jquery-1.7.1.min.js" />
-		</concat>
+		<copy tofile="${js.dir}\xui.min.js" file="${js.libs.src.dir}\xui-2.3.2.min.js" />
+		<copy tofile="${js.dir}\xui-bb.min.js"  file="${js.libs.src.dir}\xui-bb-2.3.2.min.js" />
+		<copy tofile="${js.dir}\xui-ie.min.js"  file="${js.libs.src.dir}\xui-ie-2.3.2.min.js" />
 
 		<!-- 
 			copies the custom script files to the js folder, when more custom 

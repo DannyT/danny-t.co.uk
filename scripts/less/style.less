@@ -2,25 +2,24 @@
 
 body {
 	background-color: #DCDCDC;
-	color: #000;
-	font: 1.1em 'Simonetta', cursive;
+	color: #444;
+	font: 1.1em Georgia, serif;
 	line-height:1.5;
 	word-spacing: 4px;
 }
 
 h1 {
-	font: normal 40px 'Annie Use Your Telescope', cursive;
+	font-size: 1.5em;
 	margin: 0 20px;
-	text-shadow: #000 -1px 1px;
 }
 
 h2{
-	font: 2.3em 'Annie Use Your Telescope', cursive;
-	margin: 0;
+	font: 2.3em;
+	margin: 10px 0;
+	padding: 0;
 	a{
-		color: #000;
+		color: #444;
 		text-decoration:none;
-		text-shadow: gray -1px 1px;
 
 		&:hover{
 		color: #77a809;
@@ -36,8 +35,7 @@ header[role="banner"]{
 	.gradient(#1E395A, #1E395A, #47729F);
 	height:100%;
 	min-width:320px;
-	overflow: auto;
-	top:0px;
+	overflow:none;
 
 	a{
 		color: white;
@@ -54,7 +52,7 @@ header[role="banner"]{
 		display: block;
 		position: absolute;
 		right: 15px;
-		top:17px;
+		top:4px;
 		text-align:center;
 		/* imageless css button by CSSButtonGenerator.com then less-ified */
 		a {
@@ -80,10 +78,13 @@ header[role="banner"]{
 
 	nav{
 		width:100%;
-		ul li{
-			padding-right: 20px;
+		.transition(500ms, ease);
+		ul {
+			margin-top:0;
+			li{
+				padding-right: 20px;
+			}
 		}
-		
 		.js &{
 		 	ul{	display: none; }
 		}
@@ -95,14 +96,12 @@ header[role="banner"]{
 	max-width: 800px;	
 	overflow: hidden;
 	position: relative;
-	padding: 0 10px 0 10px;
+	padding: 10px;
 	.main-content{
 		.box-shadow(-2px 2px 5px #B8B8B8);
 		background-color: #fff;
-		margin-bottom: 30px;
-		margin-top: 30px;
-
-		padding: 10px 10px;
+		margin: 0;
+		padding: 10px;
 		.rounded(9px);
 	}
 }
