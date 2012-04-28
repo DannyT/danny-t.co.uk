@@ -10,4 +10,8 @@
 	<a href="<?php the_permalink(); ?>">Continue reading</a>
 	</article>
 	<?php endwhile; ?>
+	<nav>
+		<?php previous_posts_link('Newer Posts') ?>
+		<?php next_posts_link('Older Posts'); ?>
+	</nav>	
 <?php get_footer(); ?>

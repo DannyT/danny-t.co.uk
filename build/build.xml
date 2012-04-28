@@ -6,7 +6,7 @@
 		I have a local wordpress install in a folder next to my theme development project
 		this makes it possible to deploy the theme and run the site easily
 	-->
-	<property name="wordpresstheme.dir" value="../Danny-T.co.uk/wp-content/themes/dannyt" />
+	<property name="wordpresstheme.dir" value="../wordpress/wp-content/themes/dannyt" />
 
 	<!-- 
 		Deploy directory 
