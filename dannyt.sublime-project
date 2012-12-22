@@ -1,33 +1,8 @@
 {
-	"build_systems":
-	[
-		{
-			"cmd":
-			[
-				"ant.bat",
-				"-buildfile",
-				"$project_path/build/build.xml"
-			],
-			"name": "Build"
-		},
-		{
-			"cmd":
-			[
-				"ant.bat",
-				"-buildfile",
-				"$project_path/build/build.xml",
-				"launch"
-			],
-			"name": "Launch"
-		}
-	],
 	"folders":
 	[
 		{
-			"path": "/C/Users/dannyt/Projects/danny-t.co.uk theme"
-		},
-		{
-			"path": "/C/Users/dannyt/Projects/wordpress"
+			"path": "/C/Users/Dan/Projects/wordpress/wp-content/themes/danny-t"
 		}
 	]
 }

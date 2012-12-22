@@ -8,19 +8,19 @@
   <!-- JavaScript at the bottom for fast page loading -->
   <script>
     var ua = navigator.userAgent.toLowerCase();
-    var xuiJs='<?php bloginfo( "template_url" ); ?>/js/';
+    var xuiJs='<?php bloginfo( "template_url" ); ?>/js/libs/';
 
     if (ua.indexOf("blackberry") >= 0)
     {
-      xuiJs+='xui-bb.min.js';
+      xuiJs+='xui-bb-2.3.2.min.js';
     }
     else if (ua.indexOf("msie") >= 0)
     {
-      xuiJs+='xui-ie.min.js';
+      xuiJs+='xui-ie-2.3.2.min.js';
     }
     else
     {
-      xuiJs+='xui.min.js';
+      xuiJs+='xui-2.3.2.min.js';
     }
     document.write('<script src="', xuiJs, '" type="text/JavaScript"><\/script>');
   </script>
