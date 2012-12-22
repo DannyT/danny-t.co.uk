@@ -1,3 +1,2 @@
-[submodule "css/scss/intuit"]
-	path = css/scss/intuit
-	url = https://github.com/csswizardry/inuit.css.git
+[submodule "css/scss"]
+	path = css/scss	url = https://github.com/csswizardry/inuit.css.git
