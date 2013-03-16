@@ -2,7 +2,8 @@
 	<?php while ( have_posts() ) : the_post() ?>
 		<article>
 			<header>
-				<h2><?php the_title(); ?></h2>
+				<h1><?php the_title(); ?></h1>
+				<p class="author">by <?php the_author(); ?></p>
 			</header>
 			<div class="publish-date">
 				<span class="day-of-month"><?php the_time('d') ?></span>

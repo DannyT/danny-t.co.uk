@@ -42,7 +42,7 @@
  * Font-sizes (in pixels). Refer to relevant sections for their implementations.
  */
 /**
- * Brand stuff
+ * colours
  */
 /**
  * inuit.css will work these next ones out for you.
@@ -3816,17 +3816,17 @@ html.flexbox {
  * any element using a handy helper class.
  */
 .brand {
-  font-family: "Helvetica Neue", sans-serif!important;
-  color: #4a8ec2!important;
+  font-family: "Trebuchet MS", sans-serif!important;
+  color: #00b4cc!important;
 }
 
 .brand-face {
-  font-family: "Helvetica Neue", sans-serif!important;
+  font-family: "Trebuchet MS", sans-serif!important;
 }
 
 .brand-color,
 .brand-colour {
-  color: #4a8ec2!important;
+  color: #00b4cc!important;
 }
 
 /*------------------------------------*\
@@ -3955,3 +3955,42 @@ html.flexbox {
 /**
  * She’s all yours, cap’n... Begin importing your stuff here. 
  */
+/* @import "ui/typecast";*/
+.banner h1 {
+  font-size: 2em;
+}
+
+body {
+  font-family: 'Trebuchet MS';
+  background-color: #343838;
+  font-style: normal;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 5.075em;
+  line-height: 83px;
+  margin-bottom: 18px;
+  color: #00B4CC;
+  text-transform: capitalize;
+  letter-spacing: -1px;
+  font-style: normal;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.main-content {
+  width: 477px;
+}
+
+.banner {
+  float: left;
+}
+
+.main {
+  float: left;
+}
+
+.main-nav ul {
+  list-style-type: none;
+}

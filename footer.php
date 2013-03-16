@@ -6,6 +6,8 @@
   <?php wp_footer(); ?>
 
   <!-- JavaScript at the bottom for fast page loading -->
+  <script type="text/javascript" src="//use.typekit.net/bfy4sux.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script>
     var ua = navigator.userAgent.toLowerCase();
     var xuiJs='<?php bloginfo( "template_url" ); ?>/js/libs/';

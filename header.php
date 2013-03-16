@@ -18,17 +18,14 @@
 </head>
 
 <body>
-  <header role="banner">
-    <h1><a href="<?php echo get_option('home'); ?>"><?php bloginfo( "name" ) ?></a></h1>
+  <header class="banner">
     <nav>
     <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 
                                 'container' => 'false', 
-                                'menu_class' => 'wp-menu',
+                                'menu_class' => 'main-nav',
                                 'items_wrap' => '<ul id="%1$s" class="%2$s">'."\n".'%3$s    </ul>'."\n".'%0A',
                                 'walker' => new MV_Cleaner_Walker_Nav_Menu()) ); ?>
     </nav>
-    <a class="improveon" href="http://improve-on.com/submit/danny-t.co.uk">Improve-on this site</a>
-    <div class='menu-button'><a>menu</a></div>
   </header>
   
   <div role="main" class="main">
