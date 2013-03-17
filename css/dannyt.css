@@ -1,103 +1,98 @@
 @charset "UTF-8";
 /*------------------------------------*\
-    YOUR-PROJECT.CSS
+    STYLE.CSS
 \*------------------------------------*/
 /**
- * 
- * sass --watch your-project.scss:your-project.min.css --style compressed
- * 
- * Here we set up some variables, include the inuit.css framework, then add our
+ *
+ * sass --watch style.scss:style.min.css --style compressed
+ *
+ * Here we pull in some variables, include the inuit.css framework, then add our
  * project-specific components afterwards.
  */
 /**
  * Setup
  */
 /*------------------------------------*\
-    $VARS
+    VARS.SCSS
 \*------------------------------------*/
 /**
- * Set up project-specific variables here which are then used throughout your
- * build. These variables are automatically picked up by inuit.css so you should
- * never need to modify any framework code.
+ * Any variables you find set in inuit.cssÔÇÖ `_vars.scss` that you do not wish to
+ * keep, simply redefine here. This means that if inuit.css, for example, sets
+ * your `$base-font-size` at 16px and you wish it to be 14px, simply redeclare
+ * that variable in this file. inuit.css ignores its own variables in favour of
+ * using your own, so you can completely modify how inuit.css works without ever
+ * having to alter the framework itself.
  */
+/*------------------------------------*\
+    $OBJECTS-AND-ABSTRACTIONS
+\*------------------------------------*/
 /**
- * Debug mode will visually highlight any potential markup/accessibility quirks
- * in the browser. Set to `true` or `false`.
+ * All of inuit.cssÔÇÖ objects and abstractions are initially turned off by
+ * default. This means that you start any project with as little as possible,
+ * and introducing objects and abstractions is as simple as switching the
+ * following variables to `true`.
  */
+/*------------------------------------*\
+    $OVERRIDES
+\*------------------------------------*/
 /**
- * Do you want all elements to adopt `box-sizing:border-box;` as per
- * paulirish.com/2012/box-sizing-border-box-ftw ?
+ * Place any variables that should override inuit.cssÔÇÖ defaults here.
  */
+/*------------------------------------*\
+    $CUSTOM
+\*------------------------------------*/
 /**
- * Base stuff
- */
-/**
- * How big would you like round corners to be by default?
- */
-/**
- * Responsiveness?
- * Tell inuit.css when breakpoints start, in pixels.
- */
-/**
- * Font-sizes (in pixels). Refer to relevant sections for their implementations.
- */
-/**
- * colours
- */
-/**
- * inuit.css will work these next ones out for you.
- *
- * Assign our `$base-line-height` to a new spacing var for more transparency.
+ * Place any of your own variables that sit on top of inuit.css here.
  */
 /*------------------------------------*\
     INUIT.CSS
 \*------------------------------------*/
 /**
- * 
+ *
  * inuitcss.com -- @inuitcss -- @csswizardry
- * 
+ *
  */
 /**
  * inuit.css acts as a base stylesheet which you should extend with your own
  * theme stylesheet.
- * 
+ *
  * inuit.css aims to do the heavy lifting; sorting objects and abstractions,
  * design patterns and fiddly bits of CSS, whilst leaving as much design as
  * possible to you. inuit.css is the scaffolding to your decorator.
- * 
+ *
  * This stylesheet is heavily documented and contains lots of comments, please
  * take care to read and refer to them as you build. For further support please
  * tweet at @inuitcss.
- * 
+ *
  * Owing to the amount of comments please only ever use minified CSS in
  * production. This file is purely a dev document.
- * 
+ *
  * The table of contents below maps to section titles of the same name, to jump
  * to any section simply run a find for $[SECTION-TITLE].
- * 
+ *
  * Most objects and abstractions come with a chunk of markup that you should be
  * able to paste into any view to quickly see how the CSS works in conjunction
  * with the correct HTML.
- * 
+ *
  * inuit.css is written to this standard: github.com/csswizardry/CSS-Guidelines
- * 
+ *
  * LICENSE
- * 
- * Copyright 2012 Harry Roberts
- * 
+ *
+ * Copyright 2013 Harry Roberts
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * 
- * Thank you for choosing inuit.css. May your floats remain cleared.
+ *
+ * Thank you for choosing inuit.css. May your web fonts render perfectly.
  */
 /*------------------------------------*\
     $CONTENTS
@@ -106,25 +101,24 @@
  * CONTENTS............YouÔÇÖre reading it!
  * WARNING.............Here be dragons!
  * IMPORTS.............Begin importing the sections below
- * 
+ *
  * MIXINS..............Super-simple Sass stuff
  * NORMALIZE...........normalize.css
  * RESET...............Set some defaults
  * CLEARFIX............
  * SHARED..............Shared declarations
- * 
+ *
  * MAIN................High-level elements like `html`, `body`, etc.
  * HEADINGS............Double-stranded heading hierarchy
  * PARAGRAPHS..........
  * SMALLPRINT..........Smaller text elements like `small`
  * QUOTES..............
  * CODE................
- * LINKS...............
  * LISTS...............
  * IMAGES..............
  * TABLES..............
  * FORMS...............
- * 
+ *
  * GRIDS...............Fluid, proportional and nestable grids
  * FLEXBOX.............Crudely emulate flexbox
  * COLUMNS.............CSS3 columns
@@ -144,12 +138,12 @@
  * ARROWS..............CSS arrows
  * SPRITE..............Generic spriting element
  * ICON-TEXT...........Icon and text couplings
- * BUTTONS.............
+ * BEAUTONS............Use the beautons micro library
  * LOZENGES............Basic lozenge styles
  * RULES...............Horizontal rules
  * STATS...............Simple stats object
  * GREYBOX.............Wireframing styles
- * 
+ *
  * WIDTHS..............Width classes for use alongside the grid system etc.
  * PUSH................Push classes for manipulating grids
  * PULL................Pull classes for manipulating grids
@@ -166,9 +160,9 @@
  * inuit.css to style everything we need for a base. Any custom styles SHOULD
  * NOT be added or modified in inuit.css directly, but added via your theme
  * stylesheet as per the open/closed principle:
- * 
+ *
  * csswizardry.com/2012/06/the-open-closed-principle-applied-to-css
- * 
+ *
  * Try not to edit any CSS beyond this point; if you find you need to do so
  * it is a failing of the framework so please tweet at @inuitcss.
  */
@@ -179,51 +173,161 @@
  * Generic utility styles etc.
  */
 /*------------------------------------*\
+    $DEFAULTS
+\*------------------------------------*/
+/**
+ * inuit.cssÔÇÖ default variables. Redefine these in your `_vars.scss` file (found
+ * in the inuit.css-web-template) to override them.
+ */
+/*------------------------------------*\
+    $DEBUG
+\*------------------------------------*/
+/**
+ * Debug mode will visually highlight any potential markup/accessibility quirks
+ * in the browser. Set to `true` or `false`.
+ */
+/*------------------------------------*\
+    $BORDER-BOX
+\*------------------------------------*/
+/**
+ * Do you want all elements to adopt `box-sizing:border-box;` as per
+ * paulirish.com/2012/box-sizing-border-box-ftw ?
+ */
+/*------------------------------------*\
+    $BASE
+\*------------------------------------*/
+/**
+ * Base stuff
+ */
+/**
+ * Base font-family. 
+ */
+/**
+ * Default colour for objectsÔÇÖ borders etc.
+ */
+/*------------------------------------*\
+    $RESPONSIVE
+\*------------------------------------*/
+/**
+ * Responsiveness?
+ */
+/**
+ * Responsiveness for widescreen/high resolution desktop monitors and beyond?
+ * Note: `$responsive` variable above must be set to true before enabling this.
+ */
+/**
+ * Responsive push and pull produce a LOT of code, only turn them on if you
+ * definitely need them.
+ */
+/**
+ * Note: `$push` variable above must be set to true before enabling these.
+ */
+/**
+ * Note: `$pull` variable above must be set to true before enabling these.
+ */
+/**
+ * Tell inuit.css when breakpoints start.
+ */
+/*------------------------------------*\
+    $FONT-SIZES
+\*------------------------------------*/
+/**
+ * Font-sizes (in pixels). Refer to relevant sections for their implementations.
+ */
+/*------------------------------------*\
+    $QUOTES
+\*------------------------------------*/
+/**
+ * English quote marks?
+ */
+/**
+ * If you want English quotes then please do not edit these; theyÔÇÖre only here
+ * because Sass needs them.
+ */
+/**
+ * If you need non-English quotes, please alter the following values accordingly:
+ */
+/*------------------------------------*\
+    $BRAND
+\*------------------------------------*/
+/**
+ * Brand stuff
+ */
+/**
+ * How big would you like round corners to be by default?
+ */
+/*------------------------------------*\
+    $OBJECTS AND ABSTRACTIONS
+\*------------------------------------*/
+/**
+ * Which objects and abstractions would you like to use?
+ */
+/*------------------------------------*\
+    $FRAMEWORK
+\*------------------------------------*/
+/**
+ * inuit.css will work these next ones out for use within the framework.
+ *
+ * Assign our `$base-line-height` to a new spacing var for more transparency.
+ */
+/*------------------------------------*\
     $MIXINS
 \*------------------------------------*/
 /**
  * Create a fully formed type style (sizing and vertical rhythm) by passing in a
  * single value, e.g.:
- * 
+ *
    `@include font-size(10px);`
- * 
+ *
  * Thanks to @redclov3r for the `line-height` Sass:
  * twitter.com/redclov3r/status/250301539321798657
  */
 /**
+ * Style any number of headings in one fell swoop, e.g.:
+ *
+   .foo{
+       @include headings(1, 3){
+           color:#BADA55;
+       }
+    }
+ *
+ * With thanks to @lar_zzz, @paranoida and @rowanmanning for refining and
+ * improving my initial mixin.
+ */
+/**
  * Create vendor-prefixed CSS in one go, e.g.
- * 
+ *
    `@include vendor(border-radius, 4px);`
- * 
+ *
  */
 /**
  * Create CSS keyframe animations for all vendors in one go, e.g.:
- * 
+ *
    .foo{
        @include vendor(animation, shrink 3s);
    }
-   
+
    @include keyframe(shrink){
        from{
            font-size:5em;
        }
    }
- * 
+ *
  * Courtesy of @integralist: twitter.com/integralist/status/260484115315437569
  */
 /**
  * Force overly long spans of text to truncate, e.g.:
- * 
+ *
    `@include truncate(100%);`
- * 
+ *
  * Where `$truncation-boundary` is a united measurement.
  */
 /**
  * CSS arrows!!! But... before you read on, you might want to grab a coffee...
- * 
+ *
  * This mixin creates a CSS arrow on a given element. We can have the arrow
  * appear in one of 12 locations, thus:
- * 
+ *
  *       01    02    03
  *    +------------------+
  * 12 |                  | 04
@@ -233,25 +337,25 @@
  * 10 |                  | 06
  *    +------------------+
  *       09    08    07
- * 
+ *
  * You pass this position in along with a desired arrow color and optional
  * border color, for example:
- * 
+ *
  * `@include arrow(top, left, red)`
- * 
+ *
  * for just a single, red arrow, or:
- * 
+ *
  * `@include arrow(bottom, center, red, black)`
- * 
+ *
  * which will create a red triangle with a black border which sits at the bottom
- * center of the element. Call the mixin thus: 
- * 
+ * center of the element. Call the mixin thus:
+ *
    .foo{
        background-color:#BADA55;
        border:1px solid #ACE;
        @include arrow(top, left, #BADA55, #ACE);
    }
- * 
+ *
  */
 /**
  * Media query mixin.
@@ -262,7 +366,7 @@
  * approach to design decisions, this is the closest we can get to baked-in
  * responsiveness. ItÔÇÖs flexible enough to allow you to set your own breakpoints
  * but solid enough to be frameworkified.
- * 
+ *
  * We define some broad breakpoints in our vars file that are picked up here
  * for use in a simple media query mixin. Our options are:
  *
@@ -271,19 +375,20 @@
  * lap-and-up
  * portable
  * desk
- * 
+ * desk-wide
+ *
  * Not using a media query will, naturally, serve styles to all devices.
- * 
+ *
  * `@include media-query(palm){ [styles here] }`
- * 
+ *
  * We work out your end points for you:
  */
-/* normalize.css v2.0.1 | MIT License | git.io/normalize */
+/* normalize.css v2.1.0 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
    ========================================================================== */
 /*
- * Corrects `block` display not defined in IE 8/9.
+ * Correct `block` display not defined in IE 8/9.
  */
 article,
 aside,
@@ -293,6 +398,7 @@ figure,
 footer,
 header,
 hgroup,
+main,
 nav,
 section,
 summary {
@@ -300,7 +406,7 @@ summary {
 }
 
 /*
- * Corrects `inline-block` display not defined in IE 8/9.
+ * Correct `inline-block` display not defined in IE 8/9.
  */
 audio,
 canvas,
@@ -309,7 +415,7 @@ video {
 }
 
 /*
- * Prevents modern browsers from displaying `audio` without controls.
+ * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
 audio:not([controls]) {
@@ -318,7 +424,7 @@ audio:not([controls]) {
 }
 
 /*
- * Addresses styling for `hidden` attribute not present in IE 8/9.
+ * Address styling not present in IE 8/9.
  */
 [hidden] {
   display: none;
@@ -328,8 +434,8 @@ audio:not([controls]) {
    Base
    ========================================================================== */
 /*
- * 1. Sets default font family to sans-serif.
- * 2. Prevents iOS text size adjust after orientation change, without disabling
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
 html {
@@ -342,7 +448,7 @@ html {
 }
 
 /*
- * Removes default margin.
+ * Remove default margin.
  */
 body {
   margin: 0;
@@ -352,14 +458,14 @@ body {
    Links
    ========================================================================== */
 /*
- * Addresses `outline` inconsistency between Chrome and other browsers.
+ * Address `outline` inconsistency between Chrome and other browsers.
  */
 a:focus {
   outline: thin dotted;
 }
 
 /*
- * Improves readability when focused and also mouse hovered in all browsers.
+ * Improve readability when focused and also mouse hovered in all browsers.
  */
 a:active,
 a:hover {
@@ -370,22 +476,23 @@ a:hover {
    Typography
    ========================================================================== */
 /*
- * Addresses `h1` font sizes within `section` and `article` in Firefox 4+,
- * Safari 5, and Chrome.
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
  */
 h1 {
   font-size: 2em;
+  margin: 0.67em 0;
 }
 
 /*
- * Addresses styling not present in IE 8/9, Safari 5, and Chrome.
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
  */
 abbr[title] {
   border-bottom: 1px dotted;
 }
 
 /*
- * Addresses style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
 b,
 strong {
@@ -393,14 +500,23 @@ strong {
 }
 
 /*
- * Addresses styling not present in Safari 5 and Chrome.
+ * Address styling not present in Safari 5 and Chrome.
  */
 dfn {
   font-style: italic;
 }
 
 /*
- * Addresses styling not present in IE 8/9.
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/*
+ * Address styling not present in IE 8/9.
  */
 mark {
   background: #ff0;
@@ -408,7 +524,7 @@ mark {
 }
 
 /*
- * Corrects font family set oddly in Safari 5 and Chrome.
+ * Correct font family set oddly in Safari 5 and Chrome.
  */
 code,
 kbd,
@@ -419,30 +535,28 @@ samp {
 }
 
 /*
- * Improves readability of pre-formatted text in all browsers.
+ * Improve readability of pre-formatted text in all browsers.
  */
 pre {
-  white-space: pre;
   white-space: pre-wrap;
-  word-wrap: break-word;
 }
 
 /*
- * Sets consistent quote types.
+ * Set consistent quote types.
  */
 q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
 
 /*
- * Addresses inconsistent and variable font size in all browsers.
+ * Address inconsistent and variable font size in all browsers.
  */
 small {
   font-size: 80%;
 }
 
 /*
- * Prevents `sub` and `sup` affecting `line-height` in all browsers.
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
 sub,
 sup {
@@ -464,14 +578,14 @@ sub {
    Embedded content
    ========================================================================== */
 /*
- * Removes border when inside `a` element in IE 8/9.
+ * Remove border when inside `a` element in IE 8/9.
  */
 img {
   border: 0;
 }
 
 /*
- * Corrects overflow displayed oddly in IE 9.
+ * Correct overflow displayed oddly in IE 9.
  */
 svg:not(:root) {
   overflow: hidden;
@@ -481,7 +595,7 @@ svg:not(:root) {
    Figures
    ========================================================================== */
 /*
- * Addresses margin not present in IE 8/9 and Safari 5.
+ * Address margin not present in IE 8/9 and Safari 5.
  */
 figure {
   margin: 0;
@@ -500,7 +614,7 @@ fieldset {
 }
 
 /*
- * 1. Corrects color not being inherited in IE 8/9.
+ * 1. Correct `color` not being inherited in IE 8/9.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
 legend {
@@ -511,9 +625,9 @@ legend {
 }
 
 /*
- * 1. Corrects font family not being inherited in all browsers.
- * 2. Corrects font size not being inherited in all browsers.
- * 3. Addresses margins set differently in Firefox 4+, Safari 5, and Chrome
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
 button,
 input,
@@ -528,7 +642,7 @@ textarea {
 }
 
 /*
- * Addresses Firefox 4+ setting `line-height` on `input` using `!important` in
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
 button,
@@ -537,10 +651,21 @@ input {
 }
 
 /*
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none;
+}
+
+/*
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
  *    and `video` controls.
- * 2. Corrects inability to style clickable `input` types in iOS.
- * 3. Improves usability and consistency of cursor style between image-type
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
 button,
@@ -557,13 +682,13 @@ input[type="submit"] {
  * Re-set default cursor for disabled elements.
  */
 button[disabled],
-input[disabled] {
+html input[disabled] {
   cursor: default;
 }
 
 /*
- * 1. Addresses box sizing set to `content-box` in IE 8/9.
- * 2. Removes excess padding in IE 8/9.
+ * 1. Address box sizing set to `content-box` in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
  */
 input[type="checkbox"],
 input[type="radio"] {
@@ -574,8 +699,8 @@ input[type="radio"] {
 }
 
 /*
- * 1. Addresses `appearance` set to `searchfield` in Safari 5 and Chrome.
- * 2. Addresses `box-sizing` set to `border-box` in Safari 5 and Chrome
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
  *    (include `-moz` to future-proof).
  */
 input[type="search"] {
@@ -588,7 +713,7 @@ input[type="search"] {
 }
 
 /*
- * Removes inner padding and search cancel button in Safari 5 and Chrome
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
 input[type="search"]::-webkit-search-cancel-button,
@@ -597,7 +722,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 /*
- * Removes inner padding and border in Firefox 4+.
+ * Remove inner padding and border in Firefox 4+.
  */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -606,8 +731,8 @@ input::-moz-focus-inner {
 }
 
 /*
- * 1. Removes default vertical scrollbar in IE 8/9.
- * 2. Improves readability and alignment in all browsers.
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
  */
 textarea {
   overflow: auto;
@@ -631,11 +756,11 @@ table {
     $RESET
 \*------------------------------------*/
 /**
- * A more considered reset; more of a restart... 
+ * A more considered reset; more of a restart...
  * As per: csswizardry.com/2011/10/reset-restarted
  */
 /**
-* LetÔÇÖs make the box model all nice, shall weÔÇª?
+* LetÔÇÖs make the box model all nice, shall we...?
 */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -668,7 +793,7 @@ abbr[title], dfn[title] {
 /**
  * Remove underlines from potentially troublesome elements.
  */
-a, u, ins {
+u, ins {
   text-decoration: none;
 }
 
@@ -710,26 +835,13 @@ textarea:focus {
     $CLEARFIX
 \*------------------------------------*/
 /**
- * Micro clearfix, as per: nicolasgallagher.com/micro-clearfix-hack
+ * Micro clearfix, as per: css-101.org/articles/clearfix/latest-new-clearfix-so-far.php
  * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
  * and over in your markup.
  */
-.cf, .gw,
-.grid-wrapper, .nav, .media, .island,
-.islet, .matrix, .multi-list, .stat-group {
-  zoom: 1;
-}
-.cf:before, .gw:before,
-.grid-wrapper:before, .nav:before, .media:before, .island:before,
-.islet:before, .matrix:before, .multi-list:before, .stat-group:before, .cf:after, .gw:after,
-.grid-wrapper:after, .nav:after, .media:after, .island:after,
-.islet:after, .matrix:after, .multi-list:after, .stat-group:after {
-  content: " ";
+.cf:after {
+  content: "";
   display: table;
-}
-.cf:after, .gw:after,
-.grid-wrapper:after, .nav:after, .media:after, .island:after,
-.islet:after, .matrix:after, .multi-list:after, .stat-group:after {
   clear: both;
 }
 
@@ -803,7 +915,7 @@ ul, ol, dd {
     $MAIN
 \*------------------------------------*/
 html {
-  font: 1em/1.5 serif;
+  font: 1em/1.5 "Trebuchet MS", sans-serif;
   overflow-y: scroll;
   min-height: 100%;
 }
@@ -813,15 +925,15 @@ html {
 \*------------------------------------*/
 /**
  * As per: csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css
- * 
+ *
  * When we define a heading we also define a corresponding class to go with it.
  * This allows us to apply, say, `class=alpha` to a `h3`; a double-stranded
  * heading hierarchy.
  */
 h1, .alpha {
-  font-size: 36px;
-  font-size: 2.25rem;
-  line-height: 1.33333;
+  font-size: 42px;
+  font-size: 2.625rem;
+  line-height: 1.14286;
 }
 
 h2, .beta {
@@ -857,12 +969,12 @@ h6, .zeta {
 /**
  * Heading groups and generic any-heading class.
  * To target any heading of any level simply apply a class of `.hN`, e.g.:
- * 
+ *
    <hgroup>
        <h1 class=hN>inuit.css</h1>
        <h2 class=hN>Best. Framework. Ever!</h2>
    </hgroup>
- * 
+ *
  */
 hgroup .hN {
   margin-bottom: 0;
@@ -927,27 +1039,29 @@ hgroup .hN {
     $QUOTES
 \*------------------------------------*/
 /**
+ * If English quotes are set in `_vars.scss`, define them here.
+ */
+/**
  * Big up @boblet: html5doctor.com/blockquote-q-cite
+ */
+/**
+ * Inline quotes.
  */
 q {
   quotes: "ÔÇÿ" "ÔÇÖ" "ÔÇ£" "ÔÇØ";
 }
-
 q:before {
   content: "ÔÇÿ";
   content: open-quote;
 }
-
 q:after {
   content: "ÔÇÖ";
   content: close-quote;
 }
-
 q q:before {
   content: "ÔÇ£";
   content: open-quote;
 }
-
 q q:after {
   content: "ÔÇØ";
   content: close-quote;
@@ -956,36 +1070,41 @@ q q:after {
 blockquote {
   quotes: "ÔÇ£" "ÔÇØ";
 }
-
 blockquote p:before {
   content: "ÔÇ£";
   content: open-quote;
 }
-
 blockquote p:after {
   content: "";
   content: no-close-quote;
 }
-
 blockquote p:last-of-type:after {
   content: "ÔÇØ";
   content: close-quote;
 }
+blockquote q:before {
+  content: "ÔÇÿ";
+  content: open-quote;
+}
+blockquote q:after {
+  content: "ÔÇÖ";
+  content: close-quote;
+}
 
 /**
- * 
+ *
    <blockquote>
        <p>Insanity: doing the same thing over and over again and expecting
        different results.</p>
        <b class=source>Albert Einstein</b>
    </blockquote>
- * 
+ *
  */
 blockquote {
   /**
    * .4em is roughly equal to the width of the opening ÔÇ£ that we wish to hang.
    */
-  text-indent: -0.4em;
+  text-indent: -0.41em;
 }
 blockquote p:last-of-type {
   margin-bottom: 0;
@@ -1017,9 +1136,9 @@ pre mark {
 
 /**
  * Add comments to your code examples, e.g.:
- * 
+ *
    <code>&lt;/div&gt;<span class=code-comment>&lt;!-- /wrapper --&gt;</span></code>
- * 
+ *
  */
 .code-comment {
   /**
@@ -1032,7 +1151,7 @@ pre mark {
 /**
  * You can add line numbers to your code examples but be warned, it requires
  * some pretty funky looking markup, e.g.:
- * 
+ *
    <ol class=line-numbers>
        <li><code>.nav{</code></li>
        <li><code>    list-style:none;</code></li>
@@ -1045,7 +1164,7 @@ pre mark {
        <li><code>            zoom:1;</code></li>
        <li><code>        }</code></li>
    </ol>
- * 
+ *
  * 1. Make the list look like code.
  * 2. Give the list flush numbers with a leading zero.
  * 3. Make sure lines of code donÔÇÖt wrap.
@@ -1069,48 +1188,31 @@ pre mark {
 }
 
 /*------------------------------------*\
-    $LINKS
-\*------------------------------------*/
-/**
- * Say no to negative hovers, as per: csswizardry.com/2011/05/on-negative-hovers
- *
- * Sometimes, particularly on larger projects, it is useful to scope link
- * styling only to anchors which have `href` attributes.
- */
-a {
-  /**
-   * Set colors etc in your theme stylesheet.
-   */
-}
-a:hover, a:active, a:focus {
-  text-decoration: underline;
-}
-
-/**
- * ÔÇÿCurrentÔÇÖ states, e.g.:
- * 
-   <ul class=nav>
-       <li><a href=#>Home</a></li>
-       <li><a href=#>About</a></li>
-       <li class=current><a href=#>Portfolio</a></li>
-       <li><a href=#>Contact</a></li>
-   </ul>
- * 
- */
-.current a {
-  cursor: text;
-  text-decoration: underline;
-}
-
-/*------------------------------------*\
     $IMAGES
 \*------------------------------------*/
 /**
  * Demo: jsfiddle.net/inuitcss/yMtur
  */
+/**
+ * Fluid images.
+ */
 img {
   max-width: 100%;
-  height: auto;
+}
+
+/**
+ * Non-fluid images if you specify `width` and/or `height` attributes.
+ */
+img[width],
+img[height] {
+  max-width: none;
+}
+
+/**
+ * Rounded images.
+ */
+.img--round {
+  border-radius: 4px;
 }
 
 /**
@@ -1137,7 +1239,7 @@ img {
 
 /**
  * Keep your images on your baseline.
- * 
+ *
  * Please note, these will not work too nicely with fluid images and will
  * distort when resized below a certain width. Use with caution.
  */
@@ -1395,8 +1497,7 @@ td {
  */
 .table--bordered th,
 .table--bordered td {
-  border: 1px solid #ccc;
-  /* Override this color in your theme stylesheet */
+  border: 1px solid #cccccc;
 }
 .table--bordered th:empty,
 .table--bordered td:empty {
@@ -1428,9 +1529,9 @@ td {
     $FORMS
 \*------------------------------------*/
 /**
- * 
+ *
  * Demo: jsfiddle.net/inuitcss/MhHHU
- * 
+ *
  */
 fieldset {
   padding: 24px;
@@ -1438,13 +1539,13 @@ fieldset {
 
 /**
  * Text inputs
- * 
+ *
  * Instead of a `[type]` selector for each kind of form input, we just use a
  * class to target any/every one, e.g.:
    <input type=text class=text-input>
    <input type=email class=text-input>
    <input type=password class=text-input>
- * 
+ *
  */
 .text-input,
 textarea {
@@ -1455,7 +1556,7 @@ textarea {
 
 /**
  * Group sets of form fields in a list, e.g.:
- * 
+ *
    <ul class=form-fields>
        <li>
            <label />
@@ -1470,7 +1571,7 @@ textarea {
            <input />
        </li>
    </ul>
- * 
+ *
  */
 .form-fields {
   list-style: none;
@@ -1483,11 +1584,11 @@ textarea {
 
 /**
  * Labels
- * 
+ *
  * Define a `.label` class as well as a `label` element. This means we can apply
  * label-like styling to meta-labels for groups of options where a `label`
  * element is not suitable, e.g.:
- * 
+ *
    <li>
        <span class=label>Select an option below:</span>
        <ul class="multi-list  four-cols">
@@ -1505,7 +1606,7 @@ textarea {
            </li>
        </ul>
    </li>
- * 
+ *
  */
 label,
 .label {
@@ -1514,9 +1615,9 @@ label,
 
 /**
  * Extra help text in `label`s, e.g.:
- * 
+ *
    <label>Card number <small class=additional>No spaces</small></label>
- * 
+ *
  */
 .additional {
   display: block;
@@ -1525,7 +1626,7 @@ label,
 
 /*
  * Groups of checkboxes and radios, e.g.:
- * 
+ *
    <li>
        <ul class=check-list>
            <li>
@@ -1536,7 +1637,7 @@ label,
            </li>
        </ul>
    </li>
- * 
+ *
  */
 .check-list {
   list-style: none;
@@ -1554,7 +1655,7 @@ label,
 
 /**
  * Spoken forms are for forms that read like spoken word, e.g.:
- * 
+ *
    <li class=spoken-form>
        Hello, my <label for=spoken-name>name</label> is
        <input type=text class=text-input id=spoken-name>. My home
@@ -1565,7 +1666,7 @@ label,
            <option>Other</option>
        </select>
    </li>
- * 
+ *
  */
 .spoken-form label {
   display: inline-block;
@@ -1574,15 +1675,15 @@ label,
 
 /**
  * Extra help text displayed after a field when that field is in focus, e.g.:
- * 
+ *
    <label for=email>Email:</label>
-   <input type=email class=text-input id=email> 
+   <input type=email class=text-input id=email>
    <small class=extra-help>.edu emails only</small>
- * 
+ *
  * We leave the help text in the document flow and merely set it to
  * `visibility:hidden;`. This means that it wonÔÇÖt interfere with anything once
  * it reappears.
- * 
+ *
  */
 /*small*/
 .extra-help {
@@ -1597,1307 +1698,64 @@ label,
 
 /**
  * Objects and abstractions
- * 
- * Single-line comment (//) out any objects you do not need in your project.
  */
 /*------------------------------------*\
     $GRIDS
 \*------------------------------------*/
 /**
  * Fluid and nestable grid system, e.g.:
- * 
-   <div class=gw>
-       
-       <div class="g  one-third">
+ *
+   <div class="grid">
+
+       <div class="grid__item  one-third">
            <p>One third grid</p>
-       </div>
-       
-       <div class="g  two-thirds">
+       </div><!--
+
+    --><div class="grid__item  two-thirds">
            <p>Two thirds grid</p>
-       </div>
-       
-       <div class="g  one-half">
+       </div><!--
+
+    --><div class="grid__item  one-half">
            <p>One half grid</p>
-       </div>
-       
-       <div class="g  one-quarter">
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
+           <p>One quarter grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
            <p>One quarter grid</p>
        </div>
-       
-       <div class="g  one-quarter">
-           <p>One quarter grid</p>
-       </div>
-       
+
    </div>
- * 
+ *
  * Demo: jsfiddle.net/inuitcss/CLYUC
- * 
+ *
  */
 /**
  * Grid wrapper
- * 
- * Shorthand and verbose
  */
-.gw,
-.grid-wrapper {
-  /**
-   * Negative margin to negate the padding on the first grid child. 
-   */
+.grid {
   margin-left: -24px;
-  /**
-   * The following declarations allow us to use the `.gw` class on lists.
-   */
   list-style: none;
   margin-bottom: 0;
-}
-
-/**
- * Reverse grid order
- * 
-   <div class="gw  gw--rev">
-       
-       <div class="g  one-third">
-           <p>Appears on the right</p>
-       </div>
-       
-       <div class="g  two-thirds">
-           <p>Appears on the left</p>
-       </div>
-       
-   </div>
- * 
- */
-.gw--rev .g,
-.grid-wrapper--rev .grid {
-  float: right;
 }
 
 /**
  * Very infrequently occuring grid wrappers as children of grid wrappers.
  */
-.gw > .gw,
-.grid-wrapper > .grid-wrapper {
+.grid > .grid {
   margin-left: 0;
 }
 
 /**
  * Grid
- * 
- * Shorthand and verbose
  */
-.g,
-.grid {
-  float: left;
+.grid__item {
+  display: inline-block;
+  width: 100%;
   padding-left: 24px;
-}
-
-/*------------------------------------*\
-    $FLEXBOX
-\*------------------------------------*/
-/**
- * Until we can utilise flexbox natively we can kinda, sorta, attempt to emulate
- * it, in a way... e.g.:
- * 
-   <header class=flexbox>
-       
-       <div class=flexbox__item>
-           <b>Welcome to</b>
-       </div>
-       
-       <div class=flexbox__item>
-           <img src="//csswizardry.com/inuitcss/img/logo.jpg" alt="inuit.css">
-       </div>
-   
-   </header>
- * 
- * We can also combine our grid system classes with `.flexbox__item` classes,
- * e.g.:
- * 
-   <div class=flexbox>
-       <div class="flexbox__item  one-quarter">
-       </div>
-       <div class="flexbox__item  three-quarters">
-       </div>
-   </div>
- * 
- * ItÔÇÖs pretty poorly named IÔÇÖm afraid, but it worksÔÇª
- * 
- * Demo: jsfiddle.net/inuitcss/ufUh2
- * 
- */
-.flexbox {
-  display: table;
-  width: 100%;
-}
-
-/**
- * Nasty hack to circumvent Modernizr conflicts.
- */
-html.flexbox {
-  display: block;
-  width: auto;
-}
-
-.flexbox__item {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-/*------------------------------------*\
-    $COLUMNS
-\*------------------------------------*/
-/**
- * Here we can set elements in columns of text using CSS3, e.g.:
- * 
-   <p class=text-cols--2>
- * 
- * Demo: jsfiddle.net/inuitcss/E26Yd
- * 
- */
-.text-cols--2, .text-cols--3, .text-cols--4, .text-cols--5 {
-  -webkit-column-gap: 24px;
-  -moz-column-gap: 24px;
-  -ms-column-gap: 24px;
-  -o-column-gap: 24px;
-  column-gap: 24px;
-}
-
-.text-cols--2 {
-  -webkit-column-count: 2;
-  -moz-column-count: 2;
-  -ms-column-count: 2;
-  -o-column-count: 2;
-  column-count: 2;
-}
-
-.text-cols--3 {
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
-  -ms-column-count: 3;
-  -o-column-count: 3;
-  column-count: 3;
-}
-
-.text-cols--4 {
-  -webkit-column-count: 4;
-  -moz-column-count: 4;
-  -ms-column-count: 4;
-  -o-column-count: 4;
-  column-count: 4;
-}
-
-.text-cols--5 {
-  -webkit-column-count: 5;
-  -moz-column-count: 5;
-  -ms-column-count: 5;
-  -o-column-count: 5;
-  column-count: 5;
-}
-
-/*------------------------------------*\
-    $NAV
-\*------------------------------------*/
-/**
- * Nav abstraction as per: csswizardry.com/2011/09/the-nav-abstraction
- * When used on an `ol` or `ul`, this class throws the list into horizontal mode
- * e.g.:
- * 
-   <ul class=nav>
-       <li><a href=#>Home</a></li>
-       <li><a href=#>About</a></li>
-       <li><a href=#>Portfolio</a></li>
-       <li><a href=#>Contact</a></li>
-   </ul>
- * 
- * Demo: jsfiddle.net/inuitcss/Vnph4
- * 
- */
-.nav {
-  list-style: none;
-  margin-left: 0;
-}
-.nav > li,
-.nav > li > a {
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
-}
-
-/**
- * `.nav--stacked` extends `.nav` and throws the list into vertical mode, e.g.:
- * 
-   <ul class="nav  nav--stacked">
-       <li><a href=#>Home</a></li>
-       <li><a href=#>About</a></li>
-       <li><a href=#>Portfolio</a></li>
-       <li><a href=#>Contact</a></li>
-   </ul>
- * 
- */
-.nav--stacked > li {
-  display: list-item;
-}
-.nav--stacked > li > a {
-  display: block;
-}
-
-/**
- * `.nav--banner` extends `.nav` and centres the list, e.g.:
- * 
-   <ul class="nav  nav--banner">
-       <li><a href=#>Home</a></li>
-       <li><a href=#>About</a></li>
-       <li><a href=#>Portfolio</a></li>
-       <li><a href=#>Contact</a></li>
-   </ul>
- * 
- */
-.nav--banner {
-  text-align: center;
-}
-
-/**
- * Give nav links a big, blocky hit area. Extends `.nav` and needs whitespace
- * caused by `inline-block` elements collapsing e.g.:
- * 
-   <ul class="nav  nav--block">
-       <li><a href=#>Home</a></li><!--
-    --><li><a href=#>About</a></li><!--
-    --><li><a href=#>Portfolio</a></li><!--
-    --><li><a href=#>Contact</a></li>
-   </ul>
- * 
- */
-.nav--block, .options {
-  line-height: 1;
-}
-.nav--block > li > a, .options > li > a {
-  padding: 12px;
-}
-
-/**
- * Force a nav to occupy 100% of the available width of its parent. Extends
- * `.nav`, e.g.:
- * 
-   <ul class="nav  nav--fit">
-       <li><a href=#>Home</a></li>
-       <li><a href=#>About</a></li>
-       <li><a href=#>Portfolio</a></li>
-       <li><a href=#>Contact</a></li>
-   </ul>
- * 
- * Thanks to @pimpl for this idea!
- */
-.nav--fit {
-  display: table;
-  width: 100%;
-}
-.nav--fit > li {
-  display: table-cell;
-}
-.nav--fit > li > a {
-  display: block;
-}
-
-/**
- * Make a list of keywords. Extends `.nav`, e.g.:
- * 
-   `<ul class="nav  nav--keywords>`
- * 
- */
-.nav--keywords > li:after {
-  content: ", ";
-}
-.nav--keywords > li:last-child:after {
-  display: none;
-}
-
-/*------------------------------------*\
-    $OPTIONS
-\*------------------------------------*/
-/**
- * Link-group nav, used for displaying related options. Extends `.nav--block`
- * but could also extend `.nav--fit`. Extend with colours and ÔÇÿcurrent statesÔÇÖ
- * in your theme stylesheet.
- * 
-  <ul class="nav  options">
-      <li><a></a></li><!-- 
-   --><li><a></a></li><!-- 
-   --><li><a></a></li><!-- 
-   --><li><a></a></li> 
-   </ul>
- * 
- * Demo: jsfiddle.net/inuitcss/vwfaf
- * 
- */
-.options > li > a {
-  border: 0 solid #ccc;
-  /* Extend in your theme stylesheet */
-  border-width: 1px;
-  border-left-width: 0;
-}
-.options > li:first-child > a {
-  border-left-width: 1px;
-  border-radius: 4px 0 0 4px;
-}
-.options > li:last-child > a {
-  border-radius: 0 4px 4px 0;
-}
-
-/*------------------------------------*\
-    $PAGINATION
-\*------------------------------------*/
-/**
- * Basic pagination object, extends `.nav`.
- * Requires some funky commenting to collapse any white-space caused by the
- * `display:inline-block;` rules.
- * 
-   <ol class="nav  pagination">
-       <li class=pagination__first>First</li><!--
-    --><li class=pagination__prev>Previous</li><!--
-    --><li><a href=/page/1>1</a></li><!--
-    --><li><a href=/page/2>2</a></li><!--
-    --><li class=current><a href=/page/3>3</a></li><!--
-    --><li><a href=/page/4>4</a></li><!--
-    --><li><a href=/page/5>5</a></li><!--
-    --><li class=pagination__next><a href=/page/next>Next</a></li><!--
-    --><li class=pagination__last><a href=/page/last>Last</a></li>
-   </ol>
- * 
- * Demo: jsfiddle.net/inuitcss/9Y6PU
- * 
- */
-.pagination {
-  text-align: center;
-}
-
-.pagination > li {
-  padding: 12px;
-}
-
-.pagination > li > a {
-  padding: 12px;
-  margin: -12px;
-}
-
-.pagination__first a:before {
-  content: "┬½ ";
-}
-
-.pagination__last a:after {
-  content: " ┬╗";
-}
-
-/*------------------------------------*\
-    $BREADCRUMB
-\*------------------------------------*/
-/**
- * Simple breadcrumb styling to apply to (ordered) lists. Extends `.nav`, e.g.:
- * 
-   <ol class="nav  breadcrumb">
-       <li><a href=#>Home</a></li>
-       <li><a href=#>About</a></li>
-       <li><a href=#>The Board</a></li>
-       <li class=current><a href=#>Directors</a></li>
-   </ol>
- * 
- * Demo: jsfiddle.net/inuitcss/rkAY9
- * 
- */
-.breadcrumb > li + li:before {
-  content: "┬╗ ";
-}
-
-/**
- * For denoting a path-like structure, GitHub style, e.g.:
- * 
-   <ol class="nav  breadcrumb--path">
-       <li class=breadcrumb__root><a href=#>inuit.css</a></li>
-       <li><a href=#>inuit.css</a></li>
-       <li><a href=#>partials</a></li>
-       <li class=current><a href=#>objects</a></li>
-   </ol>
- * 
- */
-.breadcrumb--path > li + li:before {
-  content: "/ ";
-}
-
-/**
- * Assign a delimiter on the fly through a data attribute, e.g.:
- * 
-   <ol class="nav  breadcrumb">
-       <li><a href=#>Home</a></li>
-       <li data-breadcrumb="|"><a href=#>About</a></li>
-       <li data-breadcrumb="|"><a href=#>The Board</a></li>
-       <li data-breadcrumb="|" class=current><a href=#>Directors</a></li>
-   </ol>
- * 
- */
-.breadcrumb > li + li[data-breadcrumb]:before {
-  content: attr(data-breadcrumb) " ";
-}
-
-/**
- * Denote the root of the tree.
- */
-.breadcrumb__root {
-  font-weight: bold;
-}
-
-/*------------------------------------*\
-    $MEDIA
-\*------------------------------------*/
-/**
- * Place any image- and text-like content side-by-side, as per:
- * stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code
- * E.g.:
- * 
-   <div class=media>
-       <img src=http://placekitten.com/200/300 alt="" class=media__img>
-       <p class=media__body>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-   </div>
- * 
- * Demo: jsfiddle.net/inuitcss/cf4Qs
- * 
- */
-.media {
-  display: block;
-}
-
-.media__img {
-  float: left;
-  margin-right: 24px;
-}
-
-/**
- * Reversed image location (right instead of left).
- */
-.media__img--rev {
-  float: right;
-  margin-left: 24px;
-}
-
-.media__img img,
-.media__img--rev img {
-  display: block;
-}
-
-.media__body {
-  overflow: hidden;
-}
-
-.media__body,
-.media__body > :last-child {
-  margin-bottom: 0;
-}
-
-/**
- * `.img`s in `.islet`s need an appropriately sized margin.
- */
-.islet .media__img {
-  margin-right: 12px;
-}
-
-.islet .media__img--rev {
-  margin-left: 12px;
-}
-
-/*------------------------------------*\
-    $MARGINALIA
-\*------------------------------------*/
-/**
- * Marginalia are, per definition, notes in the margin of a document. The
- * `marginalia__body` class can be applied to all kinds of content, like text or
- * images, and is joined by a width class:
- *
-   <div class="marginalia">
-       <div class="marginalia__body  desk-one-fifth"></div>
-   </div>
- *
- * Demo: jsfiddle.net/inuitcss/AemkH
- *
- */
-.marginalia {
-  font-size: 12px;
-  font-size: 0.75rem;
-  line-height: 2;
-}
-
-/**
- * Wait for a certain breakpoint to trigger ÔÇÿproper' marginalia. Up to this point,
- * marginalia are inline with the other text.
- */
-@media (min-width: 1024px) {
-  .marginalia {
-    position: relative;
-  }
-
-  .marginalia__body,
-  .marginalia__body--right {
-    position: absolute;
-  }
-
-  .marginalia__body {
-    right: 100%;
-    padding-right: 24px;
-    text-align: right;
-  }
-
-  /**
-   * Align marginalia to the right of the text.
-   */
-  .marginalia__body--right {
-    left: 100%;
-    padding-left: 24px;
-    text-align: left;
-  }
-}
-/*------------------------------------*\
-    $ISLAND
-\*------------------------------------*/
-/**
- * Simple, boxed off content, as per: csswizardry.com/2011/10/the-island-object
- * E.g.:
- * 
-   <div class=island>
-       I am boxed off.
-   </div>
- * 
- * Demo: jsfiddle.net/inuitcss/u8pV3
- * 
- */
-.island,
-.islet {
-  display: block;
-}
-
-.island {
-  padding: 24px;
-}
-
-.island > :last-child,
-.islet > :last-child {
-  margin-bottom: 0;
-}
-
-/**
- * Just like `.island`, only smaller.
- */
-.islet {
-  padding: 12px;
-}
-
-/*------------------------------------*\
-    $BLOCK-LIST
-\*------------------------------------*/
-/**
- * Create big blocky lists of content, e.g.:
- * 
-   <ul class=block-list>
-      <li>Foo</li>
-      <li>Bar</li>
-      <li>Baz</li>
-      <li><a href=# class=block-list__link>Foo Bar Baz</a></li>
-   </ul>
- * 
- * Extend this object in your theme stylesheet.
- * 
- * Demo: jsfiddle.net/inuitcss/hR57q
- * 
- */
-.block-list,
-.block-list > li {
-  border: 0 solid #ccc;
-  /* Override this color in your theme stylesheet */
-}
-
-.block-list {
-  list-style: none;
-  margin-left: 0;
-  border-top-width: 1px;
-}
-.block-list > li {
-  border-bottom-width: 1px;
-  padding: 12px;
-}
-
-.block-list__link {
-  display: block;
-  padding: 12px;
-  margin: -12px;
-}
-
-/*------------------------------------*\
-    $MATRIX
-\*------------------------------------*/
-/**
- * Create a grid of items out of a single list, e.g.:
- * 
-   <ul class="matrix  three-cols">
-       <li class=all-cols>Lorem</li>
-       <li>Ipsum <a href=#>dolor</a></li>
-       <li><a href=# class=matrix__link>Sit</a></li>
-       <li>Amet</li>
-       <li class=all-cols>Consectetuer</li>
-   </ul>
- * 
- * Extend this object in your theme stylesheet.
- * 
- * Demo: jsfiddle.net/inuitcss/Y2zrU
- * 
- */
-.matrix,
-.matrix > li {
-  border: 0 solid #ccc;
-  /* Override this color in your theme stylesheet */
-}
-
-.matrix {
-  list-style: none;
-  margin-left: 0;
-  border-top-width: 1px;
-  border-left-width: 1px;
-}
-.matrix > li {
-  padding: 12px;
-  float: left;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-}
-
-.matrix__link {
-  display: block;
-  padding: 12px;
-  margin: -12px;
-}
-
-/**
- * The `.multi-list` object is a lot like the `.matrix` object only without the
- * blocky borders and padding.
- * 
-   <ul class="multi-list  four-cols">
-       <li>Lorem</li>
-       <li>Ipsum</li>
-       <li>Dolor</li>
-       <li>Sit</li>
-   </ul>
- * 
- * Demo: jsfiddle.net/inuitcss/Y2zrU
- * 
- */
-.multi-list {
-  list-style: none;
-  margin-left: 0;
-}
-
-.multi-list > li {
-  float: left;
-}
-
-/**
- * Apply these classes alongside the `.matrix` or `.multi-list` classes on
- * lists to determine how wide their columns are.
- */
-.two-cols > li {
-  width: 50%;
-}
-
-.three-cols > li {
-  width: 33.333%;
-}
-
-.four-cols > li {
-  width: 25%;
-}
-
-.five-cols > li {
-  width: 20%;
-}
-
-/**
- * Unfortunately we have to qualify this selector in order to bring its
- * specificity above the `.[number]-cols > li` selectors above.
- */
-.matrix > .all-cols,
-.multi-list > .all-cols {
-  width: 100%;
-}
-
-/*------------------------------------*\
-    $SPLIT
-\*------------------------------------*/
-/**
- * Simple split item for creating two elements floated away from one another,
- * e.g.:
- * 
-   <dl class=split>       
-       <dt class=split__title>Burger and fries</dt>
-       <dd>&pound;5.99</dd>       
-       <dt class=split__title>Fillet steak</dt>
-       <dd>&pound;19.99</dd>       
-       <dt class=split__title>Ice cream</dt>
-       <dd>&pound;2.99</dd>       
-   </dl>
- * 
-   <ol class="split  results">
-       <li class=first><b class=split__title>1st place</b> Bob</li>       
-       <li class=second><b class=split__title>2nd place</b> Lilly</li>       
-       <li class=third><b class=split__title>3rd place</b> Ted</li>       
-   </ol>ÔÇï
- * 
- * Demo: jsfiddle.net/inuitcss/9gZW7
- * 
- */
-.split {
-  text-align: right;
-  list-style: none;
-  margin-left: 0;
-}
-
-.split__title {
-  text-align: left;
-  float: left;
-  clear: left;
-}
-
-/*------------------------------------*\
-    $THIS-OR-THIS
-\*------------------------------------*/
-/**
- * Simple options object to provide multiple choices, e.g.:
- * 
-   <h1 class=this-or-this>
-       <a href=# class="this-or-this__this  two-fifths">
-           Free
-       </a>
-       <span class="this-or-this__or  one-fifth">
-           or
-       </span>
-       <a href=# class="this-or-this__this  two-fifths">
-           Pro
-       </a>
-   </h1>
- * 
- * The `.this-or-this__this` and `.this-or-this__or` objects can be sized using
- * the grid-system classes.
- * 
- * Demo: jsfiddle.net/inuitcss/R3sks
- * 
- */
-.this-or-this {
-  display: table;
-  width: 100%;
-  text-align: center;
-}
-
-.this-or-this__this,
-.this-or-this__or {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-/*------------------------------------*\
-    $LINK-COMPLEX
-\*------------------------------------*/
-/**
- * As inspired by @necolas:
- * github.com/necolas/suit-utils/blob/master/link.css#L18
- * 
- * Add hover behaviour to only selected items within links, e.g.:
- * 
-   <a href=log-in class=link-complex>
-       <i class="s  s--user"></i>
-       <span class=link-complex__target>Log in</span>
-   </a>
- * 
- * Demo: jsfiddle.net/inuitcss/rt9M3
- * 
- */
-.link-complex,
-.link-complex:hover,
-.link-complex:active,
-.link-complex:focus {
-  text-decoration: none;
-}
-
-.link-complex:hover .link-complex__target,
-.link-complex:active .link-complex__target,
-.link-complex:focus .link-complex__target {
-  text-decoration: underline;
-}
-
-/*------------------------------------*\
-    $FLYOUT
-\*------------------------------------*/
-/**
- * Flyouts are pieces of content that fly out of a parent when said parent is
- * hovered. They typically appear bottom-left of the parent.
- * 
-   <div class=flyout>
-       Foo
-       <div class=flyout__content>
-           <h1>Lorem</h1>
-           <p>Ipsum</p>
-       </div>
-   </div>
- * 
- * Extend these objects in your theme stylesheet.
- * 
- * Demo: jsfiddle.net/inuitcss/B52HG
- * 
- */
-.flyout,
-.flyout--alt {
-  position: relative;
-  overflow: hidden;
-}
-
-.flyout__content {
-  /**
-   * Position the flyouts off-screen. This is typically better than
-   * `display:none;`.
-   */
-  position: absolute;
-  top: 100%;
-  left: -99999px;
-}
-
-/**
- * Bring the flyouts into view when you hover their parents.
- * Two different types of flyout; ÔÇÿregularÔÇÖ (`.flyout`) and ÔÇÿalternativeÔÇÖ
- * (`.flyout--alt`).
- */
-.flyout:hover,
-.flyout--alt:hover {
-  overflow: visible;
-}
-
-/**
- * Regular flyouts sit all the way from the top, flush left.
- */
-.flyout:hover > .flyout__content {
-  left: 0;
-}
-
-/**
- * Alternative flyouts sit all the way from the left, flush top.
- */
-.flyout--alt:hover > .flyout__content {
-  top: 0;
-  left: 100%;
-}
-
-/*------------------------------------*\
-    $ARROWS
-\*------------------------------------*/
-/**
- * It is a common design treatment to give an element a triangular points-out
- * arrow, we typically build these with CSS. These following classes allow us to
- * generate these arbitrarily with a mixin, `@arrow()`.
- */
-/**
- * Forms the basis for any/all CSS arrows.
- */
-/**
- * Define individual edges so we can combine what we need, when we need.
- */
-/*------------------------------------*\
-    $SPRITE
-\*------------------------------------*/
-/**
- * Giving an element a class of `.s` will throw it into ÔÇÿspriteÔÇÖ mode and apply
- * a background image e.g.:
- * 
-   <a class="s  s--question-mark">More info&hellip;</a>
- * 
- * or
- * 
-   <a href=#><i class="s  s--question-mark"></i> Help and FAQ</a>
- * 
- * Giving an element a class of `.i` will throw it into ÔÇÿiconÔÇÖ mode and will
- * not add a background, but should be used for icon fonts and is populated
- * through a `data-char` attribute and the `:after` pseudo-element, e.g.:
- * 
-   <a href=# class=i data-char="C">Add to favorites</a>
- * 
- * or
- * 
-   <a href=#><i class=i data-char="C"></i> View your favourites</a>
- * 
- * Where ÔÇÿCÔÇÖ might map to a star in your particular font.
- * 
- * These all require extension in your theme stylesheet.
- * 
- * Demo: jsfiddle.net/inuitcss/6TKuS
- * 
- */
-.s,
-.i {
-  display: inline-block;
-  /**
-   * The typical size of most icons. Override in your theme stylesheet.
-   */
-  width: 16px;
-  height: 16px;
-  position: relative;
-  zoom: 1;
-  /**
-   * So using `.i` on `i` elements doesnÔÇÖt make a visual difference.
-   */
-  font-style: normal;
-  /**
-   * So icons added using `.i` sit in the centre of the element.
-   */
-  text-align: center;
-}
-
-.s {
-  background-image: url(/path/to/your/sprite.png);
-  vertical-align: middle;
-  top: -1px;
-  /*
-   * H5BP method image replacement:
-   * github.com/h5bp/html5-boilerplate/commit/adecc5da035d6d76b77e3fa95c6abde841073da2
-   */
-  overflow: hidden;
-  *text-indent: -9999px;
-}
-.s:before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 100%;
-}
-
-.i {
   vertical-align: top;
-}
-.i:after {
-  content: attr(data-char);
-}
-
-/*------------------------------------*\
-    $ICON-TEXT
-\*------------------------------------*/
-/**
- * For text-links etc that have an icon with them. Sometimes whitespace would
- * suffice in creating a gap between the icon and text, for example:
- * 
-   <a href=#>
-       <i class="s  s--help"></i> Help &amp; support
-   </a>
- * 
- * However we will sometimes want a larger, explicity set gap:
-   <a href=# class=icon-text>
-       <i class="icon-text__icon  s  s--help"></i>Help &amp; support
-   </a>
- * 
- * Demo: jsfiddle.net/inuitcss/Q6Lbf
- * 
- */
-.icon-text > .icon-text__icon {
-  margin-right: 8px;
-}
-
-/**
- * We can also reverse the direction of the margin for icons that appear to the
- * right of the text content, thus:
- *
-   <a href=# class=icon-text--rev>
-       Help &amp; support<i class="icon-text__icon  s  s--help"></i>
-   </a>
- *
- */
-.icon-text--rev > .icon-text__icon {
-  margin-left: 8px;
-}
-
-/*------------------------------------*\
-    $BUTTONS
-\*------------------------------------*/
-/**
- * Basic button structural styling. Extend in your theme stylesheet.
- * 
- * Demo: jsfiddle.net/inuitcss/RqHcp
- * 
- */
-.btn {
-  font: inherit;
-  cursor: pointer;
-  border: none;
-  display: inline-block;
-  margin: 0;
-  line-height: 1;
-  /**
-   * Set padding in ems so we can change the size of a button by merely
-   * altering its `font-size`.
-   */
-  padding: 0.5em;
-}
-
-.btn,
-.btn:hover {
-  text-decoration: none;
-}
-
-/**
- * Basic button modifiers
- */
-.btn--sml {
-  font-size: .75em;
-}
-
-.btn--lrg {
-  font-size: 1.50em;
-}
-
-.btn--full {
-  display: block;
-  text-align: center;
-  /**
-   * The following is so that `.btn-full` works properly on `input`s as well
-   * as `a`s.
-   */
-  padding-right: 0;
-  padding-left: 0;
-  width: 100%;
-}
-
-/*------------------------------------*\
-    $LOZENGES
-\*------------------------------------*/
-/**
- * Create pill- and lozenge-like runs of text, e.g.:
- * 
-   <p>This <span class=pill>here</span> is a pill!</p>
- * 
-   <p>This <span class=loz>here</span> is also a lozenge!</p>
- * 
- * Pills have fully rounded ends, lozenges have only their corners rounded.
- * 
- * Demo: jsfiddle.net/inuitcss/N3pGm
- * 
- */
-.pill, .loz {
-  display: inline-block;
-  /**
-   * These numbers set in ems mean that, at its narrowest, a lozenge will be
-   * the same width as the `line-height` set on the `html` element.
-   * This allows us to use the `.loz` in almost any `font-size` we wish.
-   */
-  min-width: 1.0em;
-  padding-right: 0.25em;
-  padding-left: 0.25em;
-  /* =1.50em */
-  text-align: center;
-  background-color: #ccc;
-  /* Override this color in your theme stylesheet */
-  color: #fff;
-  /* Override this color in your theme stylesheet */
-  /**
-   * Normally weÔÇÖd use border-radius:100%; but instead here we just use an
-   * overly large number; `border-radius:100%;` would create an oval on
-   * non-square elements whereas we just want to round the ends of an element.
-   */
-  border-radius: 100px;
-}
-
-.loz {
-  border-radius: 4px;
-}
-
-/*------------------------------------*\
-    $RULES
-\*------------------------------------*/
-/**
- * Horizontal rules, extend `hr`.
- * 
- * Demo: jsfiddle.net/inuitcss/L6GuZ
- * 
- */
-.rule {
-  color: #ccc;
-  /* Sets border color, extend in your theme stylesheet. */
-  border: none;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  margin-bottom: 23px;
-  margin-bottom: 1.4375rem;
-}
-
-/**
- * Dotted rules
- */
-.rule--dotted {
-  border-bottom-style: dotted;
-}
-
-/**
- * Dashed rules
- */
-.rule--dashed {
-  border-bottom-style: dashed;
-}
-
-/**
- * Ornamental rules. Places a ┬º over the rule.
- */
-.rule--ornament {
-  position: relative;
-  /**
-  * Pass in an arbitrary ornament though a data attribute, e.g.:
-  * 
-    <hr class="rule  rule--ornament" data-ornament="!">
-  * 
-  */
-}
-.rule--ornament:after {
-  content: "┬º";
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  line-height: 0;
-  text-align: center;
-}
-.rule--ornament[data-ornament]:after {
-  content: attr(data-ornament);
-}
-
-/*------------------------------------*\
-    $STATS
-\*------------------------------------*/
-/**
- * Simple object to display keyÔÇôvalue statistic-like information, e.g.: 
- *
-   <div class=stat-group>
-       <dl class=stat>
-           <dt class=stat__title>Tweets</dt>
-           <dd class=stat__value>27,740</dd>
-       </dl>
-       
-       <dl class=stat>
-           <dt class=stat__title>Following</dt>
-           <dd class=stat__value>11,529</dd>
-       </dl>
-       
-       <dl class=stat>
-           <dt class=stat__title>Followers</dt>
-           <dd class=stat__value>12,105</dd>
-       </dl>
-   </div>
- *
- * Demo: jsfiddle.net/inuitcss/Bpwu6
- *
- */
-.stat-group {
-  margin-left: -24px;
-}
-
-.stat {
-  float: left;
-  margin-left: 24px;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
-}
-
-.stat__title {
-  -webkit-order: 2;
-  -moz-order: 2;
-  -ms-order: 2;
-  -o-order: 2;
-  order: 2;
-  -ms-flex-order: 2;
-}
-
-.stat__value {
-  margin-left: 0;
-  -webkit-order: 1;
-  -moz-order: 1;
-  -ms-order: 1;
-  -o-order: 1;
-  order: 1;
-  -ms-flex-order: 1;
-}
-
-/*------------------------------------*\
-    $GREYBOX
-\*------------------------------------*/
-/**
- * Quickly throw together greybox wireframes. Use in conjunction with other
- * inuit.css objects to create simple greybox prototypes, e.g.:
- * 
-   <div class="island  greybox  greybox--medium">Header</div>
-   
-   <ul class="nav  nav--fit  nav--block  greybox">
-       <li><a href=#>Home</a></li>
-       <li><a href=#>About</a></li>
-       <li><a href=#>Portfolio</a></li>
-       <li><a href=#>Contact</a></li>
-   </ul>
- * 
- * The beauty of combining the greyboxing with inuit.css objects is that any
- * prototyping can quickly be converted into/used as production code.
- * 
- * For a more complete prototyping framework, consider Adam WhitcroftÔÇÖs Proto:
- * adamwhitcroft.com/proto
- * 
- * Demo: jsfiddle.net/inuitcss/qCXfh/
- * 
- */
-.greybox,
-.graybox {
-  font-size: 12px;
-  font-size: 0.75rem;
-  line-height: 2;
-  font-family: sans-serif;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #fff;
-}
-
-.greybox a,
-.graybox a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-/**
- * All greyboxes will occupy 100% of their parentÔÇÖs width, but to alter their
- * heights we apply incrementally larger line-heights:
- */
-.greybox--small,
-.graybox--small {
-  line-height: 48px;
-}
-
-.greybox--medium,
-.graybox--medium {
-  line-height: 96px;
-}
-
-.greybox--large,
-.graybox--large {
-  line-height: 192px;
-}
-
-.greybox--huge,
-.graybox--huge {
-  line-height: 384px;
-}
-
-.greybox--gigantic,
-.graybox--gigantic {
-  line-height: 768px;
 }
 
 /**
@@ -2915,22 +1773,22 @@ html.flexbox {
  * variations.
  */
 /**
- * Whole
- */
+* Whole
+*/
 .one-whole {
   width: 100%;
 }
 
 /**
- * Halves
- */
+* Halves
+*/
 .one-half, .two-quarters, .three-sixths, .four-eighths, .five-tenths, .six-twelfths {
   width: 50%;
 }
 
 /**
- * Thirds
- */
+* Thirds
+*/
 .one-third, .two-sixths, .four-twelfths {
   width: 33.333%;
 }
@@ -2940,8 +1798,8 @@ html.flexbox {
 }
 
 /**
- * Quarters
- */
+* Quarters
+*/
 .one-quarter, .two-eighths, .three-twelfths {
   width: 25%;
 }
@@ -2951,8 +1809,8 @@ html.flexbox {
 }
 
 /**
- * Fifths
- */
+* Fifths
+*/
 .one-fifth, .two-tenths {
   width: 20%;
 }
@@ -2970,8 +1828,8 @@ html.flexbox {
 }
 
 /**
- * Sixths
- */
+* Sixths
+*/
 .one-sixth, .two-twelfths {
   width: 16.666%;
 }
@@ -2981,8 +1839,8 @@ html.flexbox {
 }
 
 /**
- * Eighths
- */
+* Eighths
+*/
 .one-eighth {
   width: 12.5%;
 }
@@ -3000,8 +1858,8 @@ html.flexbox {
 }
 
 /**
- * Tenths
- */
+* Tenths
+*/
 .one-tenth {
   width: 10%;
 }
@@ -3019,8 +1877,8 @@ html.flexbox {
 }
 
 /**
- * Twelfths
- */
+* Twelfths
+*/
 .one-twelfth {
   width: 8.333%;
 }
@@ -3039,7 +1897,7 @@ html.flexbox {
 
 /**
  * If you have set `$responsive` to ÔÇÿtrueÔÇÖ in `_vars.scss` then you now have
- * access to these classes. You can define at which breakpoing youÔÇÖd like an
+ * access to these classes. You can define at which breakpoint youÔÇÖd like an
  * element to be a certain size, e.g.:
  *
  * `<div class="g  one-quarter  lap-one-half  palm-one-whole"> ... </div>`
@@ -3053,22 +1911,22 @@ html.flexbox {
  */
 @media only screen and (max-width: 480px) {
   /**
-   * Whole
-   */
+  * Whole
+  */
   .palm-one-whole {
     width: 100%;
   }
 
   /**
-   * Halves
-   */
+  * Halves
+  */
   .palm-one-half, .palm-two-quarters, .palm-three-sixths, .palm-four-eighths, .palm-five-tenths, .palm-six-twelfths {
     width: 50%;
   }
 
   /**
-   * Thirds
-   */
+  * Thirds
+  */
   .palm-one-third, .palm-two-sixths, .palm-four-twelfths {
     width: 33.333%;
   }
@@ -3078,8 +1936,8 @@ html.flexbox {
   }
 
   /**
-   * Quarters
-   */
+  * Quarters
+  */
   .palm-one-quarter, .palm-two-eighths, .palm-three-twelfths {
     width: 25%;
   }
@@ -3089,8 +1947,8 @@ html.flexbox {
   }
 
   /**
-   * Fifths
-   */
+  * Fifths
+  */
   .palm-one-fifth, .palm-two-tenths {
     width: 20%;
   }
@@ -3108,8 +1966,8 @@ html.flexbox {
   }
 
   /**
-   * Sixths
-   */
+  * Sixths
+  */
   .palm-one-sixth, .palm-two-twelfths {
     width: 16.666%;
   }
@@ -3119,8 +1977,8 @@ html.flexbox {
   }
 
   /**
-   * Eighths
-   */
+  * Eighths
+  */
   .palm-one-eighth {
     width: 12.5%;
   }
@@ -3138,8 +1996,8 @@ html.flexbox {
   }
 
   /**
-   * Tenths
-   */
+  * Tenths
+  */
   .palm-one-tenth {
     width: 10%;
   }
@@ -3157,8 +2015,8 @@ html.flexbox {
   }
 
   /**
-   * Twelfths
-   */
+  * Twelfths
+  */
   .palm-one-twelfth {
     width: 8.333%;
   }
@@ -3177,22 +2035,22 @@ html.flexbox {
 }
 @media only screen and (min-width: 481px) and (max-width: 1023px) {
   /**
-   * Whole
-   */
+  * Whole
+  */
   .lap-one-whole {
     width: 100%;
   }
 
   /**
-   * Halves
-   */
+  * Halves
+  */
   .lap-one-half, .lap-two-quarters, .lap-three-sixths, .lap-four-eighths, .lap-five-tenths, .lap-six-twelfths {
     width: 50%;
   }
 
   /**
-   * Thirds
-   */
+  * Thirds
+  */
   .lap-one-third, .lap-two-sixths, .lap-four-twelfths {
     width: 33.333%;
   }
@@ -3202,8 +2060,8 @@ html.flexbox {
   }
 
   /**
-   * Quarters
-   */
+  * Quarters
+  */
   .lap-one-quarter, .lap-two-eighths, .lap-three-twelfths {
     width: 25%;
   }
@@ -3213,8 +2071,8 @@ html.flexbox {
   }
 
   /**
-   * Fifths
-   */
+  * Fifths
+  */
   .lap-one-fifth, .lap-two-tenths {
     width: 20%;
   }
@@ -3232,8 +2090,8 @@ html.flexbox {
   }
 
   /**
-   * Sixths
-   */
+  * Sixths
+  */
   .lap-one-sixth, .lap-two-twelfths {
     width: 16.666%;
   }
@@ -3243,8 +2101,8 @@ html.flexbox {
   }
 
   /**
-   * Eighths
-   */
+  * Eighths
+  */
   .lap-one-eighth {
     width: 12.5%;
   }
@@ -3262,8 +2120,8 @@ html.flexbox {
   }
 
   /**
-   * Tenths
-   */
+  * Tenths
+  */
   .lap-one-tenth {
     width: 10%;
   }
@@ -3281,8 +2139,8 @@ html.flexbox {
   }
 
   /**
-   * Twelfths
-   */
+  * Twelfths
+  */
   .lap-one-twelfth {
     width: 8.333%;
   }
@@ -3299,24 +2157,148 @@ html.flexbox {
     width: 91.666%;
   }
 }
+@media only screen and (min-width: 481px) {
+  /**
+  * Whole
+  */
+  .lap-and-up-one-whole {
+    width: 100%;
+  }
+
+  /**
+  * Halves
+  */
+  .lap-and-up-one-half, .lap-and-up-two-quarters, .lap-and-up-three-sixths, .lap-and-up-four-eighths, .lap-and-up-five-tenths, .lap-and-up-six-twelfths {
+    width: 50%;
+  }
+
+  /**
+  * Thirds
+  */
+  .lap-and-up-one-third, .lap-and-up-two-sixths, .lap-and-up-four-twelfths {
+    width: 33.333%;
+  }
+
+  .lap-and-up-two-thirds, .lap-and-up-four-sixths, .lap-and-up-eight-twelfths {
+    width: 66.666%;
+  }
+
+  /**
+  * Quarters
+  */
+  .lap-and-up-one-quarter, .lap-and-up-two-eighths, .lap-and-up-three-twelfths {
+    width: 25%;
+  }
+
+  .lap-and-up-three-quarters, .lap-and-up-six-eighths, .lap-and-up-nine-twelfths {
+    width: 75%;
+  }
+
+  /**
+  * Fifths
+  */
+  .lap-and-up-one-fifth, .lap-and-up-two-tenths {
+    width: 20%;
+  }
+
+  .lap-and-up-two-fifths, .lap-and-up-four-tenths {
+    width: 40%;
+  }
+
+  .lap-and-up-three-fifths, .lap-and-up-six-tenths {
+    width: 60%;
+  }
+
+  .lap-and-up-four-fifths, .lap-and-up-eight-tenths {
+    width: 80%;
+  }
+
+  /**
+  * Sixths
+  */
+  .lap-and-up-one-sixth, .lap-and-up-two-twelfths {
+    width: 16.666%;
+  }
+
+  .lap-and-up-five-sixths, .lap-and-up-ten-twelfths {
+    width: 83.333%;
+  }
+
+  /**
+  * Eighths
+  */
+  .lap-and-up-one-eighth {
+    width: 12.5%;
+  }
+
+  .lap-and-up-three-eighths {
+    width: 37.5%;
+  }
+
+  .lap-and-up-five-eighths {
+    width: 62.5%;
+  }
+
+  .lap-and-up-seven-eighths {
+    width: 87.5%;
+  }
+
+  /**
+  * Tenths
+  */
+  .lap-and-up-one-tenth {
+    width: 10%;
+  }
+
+  .lap-and-up-three-tenths {
+    width: 30%;
+  }
+
+  .lap-and-up-seven-tenths {
+    width: 70%;
+  }
+
+  .lap-and-up-nine-tenths {
+    width: 90%;
+  }
+
+  /**
+  * Twelfths
+  */
+  .lap-and-up-one-twelfth {
+    width: 8.333%;
+  }
+
+  .lap-and-up-five-twelfths {
+    width: 41.666%;
+  }
+
+  .lap-and-up-seven-twelfths {
+    width: 58.333%;
+  }
+
+  .lap-and-up-eleven-twelfths {
+    width: 91.666%;
+  }
+}
 @media only screen and (max-width: 1023px) {
   /**
-   * Whole
-   */
+  * Whole
+  */
   .portable-one-whole {
     width: 100%;
   }
 
   /**
-   * Halves
-   */
+  * Halves
+  */
   .portable-one-half, .portable-two-quarters, .portable-three-sixths, .portable-four-eighths, .portable-five-tenths, .portable-six-twelfths {
     width: 50%;
   }
 
   /**
-   * Thirds
-   */
+  * Thirds
+  */
   .portable-one-third, .portable-two-sixths, .portable-four-twelfths {
     width: 33.333%;
   }
@@ -3326,8 +2308,8 @@ html.flexbox {
   }
 
   /**
-   * Quarters
-   */
+  * Quarters
+  */
   .portable-one-quarter, .portable-two-eighths, .portable-three-twelfths {
     width: 25%;
   }
@@ -3337,8 +2319,8 @@ html.flexbox {
   }
 
   /**
-   * Fifths
-   */
+  * Fifths
+  */
   .portable-one-fifth, .portable-two-tenths {
     width: 20%;
   }
@@ -3356,8 +2338,8 @@ html.flexbox {
   }
 
   /**
-   * Sixths
-   */
+  * Sixths
+  */
   .portable-one-sixth, .portable-two-twelfths {
     width: 16.666%;
   }
@@ -3367,8 +2349,8 @@ html.flexbox {
   }
 
   /**
-   * Eighths
-   */
+  * Eighths
+  */
   .portable-one-eighth {
     width: 12.5%;
   }
@@ -3386,8 +2368,8 @@ html.flexbox {
   }
 
   /**
-   * Tenths
-   */
+  * Tenths
+  */
   .portable-one-tenth {
     width: 10%;
   }
@@ -3405,8 +2387,8 @@ html.flexbox {
   }
 
   /**
-   * Twelfths
-   */
+  * Twelfths
+  */
   .portable-one-twelfth {
     width: 8.333%;
   }
@@ -3425,22 +2407,22 @@ html.flexbox {
 }
 @media only screen and (min-width: 1024px) {
   /**
-   * Whole
-   */
+  * Whole
+  */
   .desk-one-whole {
     width: 100%;
   }
 
   /**
-   * Halves
-   */
+  * Halves
+  */
   .desk-one-half, .desk-two-quarters, .desk-three-sixths, .desk-four-eighths, .desk-five-tenths, .desk-six-twelfths {
     width: 50%;
   }
 
   /**
-   * Thirds
-   */
+  * Thirds
+  */
   .desk-one-third, .desk-two-sixths, .desk-four-twelfths {
     width: 33.333%;
   }
@@ -3450,8 +2432,8 @@ html.flexbox {
   }
 
   /**
-   * Quarters
-   */
+  * Quarters
+  */
   .desk-one-quarter, .desk-two-eighths, .desk-three-twelfths {
     width: 25%;
   }
@@ -3461,8 +2443,8 @@ html.flexbox {
   }
 
   /**
-   * Fifths
-   */
+  * Fifths
+  */
   .desk-one-fifth, .desk-two-tenths {
     width: 20%;
   }
@@ -3480,8 +2462,8 @@ html.flexbox {
   }
 
   /**
-   * Sixths
-   */
+  * Sixths
+  */
   .desk-one-sixth, .desk-two-twelfths {
     width: 16.666%;
   }
@@ -3491,8 +2473,8 @@ html.flexbox {
   }
 
   /**
-   * Eighths
-   */
+  * Eighths
+  */
   .desk-one-eighth {
     width: 12.5%;
   }
@@ -3510,8 +2492,8 @@ html.flexbox {
   }
 
   /**
-   * Tenths
-   */
+  * Tenths
+  */
   .desk-one-tenth {
     width: 10%;
   }
@@ -3529,8 +2511,8 @@ html.flexbox {
   }
 
   /**
-   * Twelfths
-   */
+  * Twelfths
+  */
   .desk-one-twelfth {
     width: 8.333%;
   }
@@ -3547,6 +2529,11 @@ html.flexbox {
     width: 91.666%;
   }
 }
+/**
+ * If you have set the additional `$responsive-extra` variable to ÔÇÿtrueÔÇÖ in
+ * `_vars.scss` then you now have access to the following class available to
+ * accomodate much larger screen resolutions.
+ */
 /* endif */
 /*------------------------------------*\
     $PUSH
@@ -3554,260 +2541,12 @@ html.flexbox {
 /**
  * Push classes, to move grid items over to the right by certain amounts.
  */
-.push, .push--one-half, .push--two-quarters, .push--three-sixths, .push--four-eighths, .push--six-twelfths, .push--one-third, .push--two-sixths, .push--four-twelfths, .push--two-thirds, .push--four-sixths, .push--eight-twelfths, .push--one-quarter, .push--two-eighths, .push--three-twelfths, .push--three-quarters, .push--six-eighths, .push--nine-twelfths, .push--one-fifth, .push--two-tenths, .push--two-fifths, .push--four-tenths, .push--three-fifths, .push--six-tenths, .push--four-fifths, .push--eight-tenths, .push--one-sixth, .push--two-twelfths, .push--five-sixths, .push--ten-twelfths, .push--one-eighth, .push--three-eighths, .push--five-eighths, .push--seven-eighths, .push--one-tenth, .push--three-tenths, .push--five-tenths, .push--seven-tenths, .push--nine-tenths, .push--one-twelfth, .push--five-twelfths, .push--seven-twelfths, .push--eleven-twelfths {
-  position: relative;
-}
-
-/**
- * Halves
- */
-.push--one-half, .push--two-quarters, .push--three-sixths, .push--four-eighths, .push--six-twelfths {
-  left: 50%;
-}
-
-/**
- * Thirds
- */
-.push--one-third, .push--two-sixths, .push--four-twelfths {
-  left: 33.333%;
-}
-
-.push--two-thirds, .push--four-sixths, .push--eight-twelfths {
-  left: 66.666%;
-}
-
-/**
- * Quarters
- */
-.push--one-quarter, .push--two-eighths, .push--three-twelfths {
-  left: 25%;
-}
-
-.push--three-quarters, .push--six-eighths, .push--nine-twelfths {
-  left: 75%;
-}
-
-/**
- * Fifths
- */
-.push--one-fifth, .push--two-tenths {
-  left: 20%;
-}
-
-.push--two-fifths, .push--four-tenths {
-  left: 40%;
-}
-
-.push--three-fifths, .push--six-tenths {
-  left: 60%;
-}
-
-.push--four-fifths, .push--eight-tenths {
-  left: 80%;
-}
-
-/**
- * Sixths
- */
-.push--one-sixth, .push--two-twelfths {
-  left: 16.666%;
-}
-
-.push--five-sixths, .push--ten-twelfths {
-  left: 83.333%;
-}
-
-/**
- * Eighths
- */
-.push--one-eighth {
-  left: 12.5%;
-}
-
-.push--three-eighths {
-  left: 37.5%;
-}
-
-.push--five-eighths {
-  left: 62.5%;
-}
-
-.push--seven-eighths {
-  left: 87.5%;
-}
-
-/**
- * Tenths
- */
-.push--one-tenth {
-  left: 10%;
-}
-
-.push--three-tenths {
-  left: 30%;
-}
-
-.push--five-tenths {
-  left: 50%;
-}
-
-.push--seven-tenths {
-  left: 70%;
-}
-
-.push--nine-tenths {
-  left: 90%;
-}
-
-/**
- * Twelfths
- */
-.push--one-twelfth {
-  left: 8.333%;
-}
-
-.push--five-twelfths {
-  left: 41.666%;
-}
-
-.push--seven-twelfths {
-  left: 58.333%;
-}
-
-.push--eleven-twelfths {
-  left: 91.666%;
-}
-
 /*------------------------------------*\
     $PULL
 \*------------------------------------*/
 /**
- * Pull classes, to move grid items over to the left by certain amounts.
+ * Pull classes, to move grid items over to the right by certain amounts.
  */
-.pull, .pull--one-half, .pull--two-quarters, .pull--three-sixths, .pull--four-eighths, .pull--six-twelfths, .pull--one-third, .pull--two-sixths, .pull--four-twelfths, .pull--two-thirds, .pull--four-sixths, .pull--eight-twelfths, .pull--one-quarter, .pull--two-eighths, .pull--three-twelfths, .pull--three-quarters, .pull--six-eighths, .pull--nine-twelfths, .pull--one-fifth, .pull--two-tenths, .pull--two-fifths, .pull--four-tenths, .pull--three-fifths, .pull--six-tenths, .pull--four-fifths, .pull--eight-tenths, .pull--one-sixth, .pull--two-twelfths, .pull--five-sixths, .pull--ten-twelfths, .pull--one-eighth, .pull--three-eighths, .pull--five-eighths, .pull--seven-eighths, .pull--one-tenth, .pull--three-tenths, .pull--five-tenths, .pull--seven-tenths, .pull--nine-tenths, .pull--one-twelfth, .pull--five-twelfths, .pull--seven-twelfths, .pull--eleven-twelfths {
-  position: relative;
-}
-
-/**
- * Halves
- */
-.pull--one-half, .pull--two-quarters, .pull--three-sixths, .pull--four-eighths, .pull--six-twelfths {
-  right: 50%;
-}
-
-/**
- * Thirds
- */
-.pull--one-third, .pull--two-sixths, .pull--four-twelfths {
-  right: 33.333%;
-}
-
-.pull--two-thirds, .pull--four-sixths, .pull--eight-twelfths {
-  right: 66.666%;
-}
-
-/**
- * Quarters
- */
-.pull--one-quarter, .pull--two-eighths, .pull--three-twelfths {
-  right: 25%;
-}
-
-.pull--three-quarters, .pull--six-eighths, .pull--nine-twelfths {
-  right: 75%;
-}
-
-/**
- * Fifths
- */
-.pull--one-fifth, .pull--two-tenths {
-  right: 20%;
-}
-
-.pull--two-fifths, .pull--four-tenths {
-  right: 40%;
-}
-
-.pull--three-fifths, .pull--six-tenths {
-  right: 60%;
-}
-
-.pull--four-fifths, .pull--eight-tenths {
-  right: 80%;
-}
-
-/**
- * Sixths
- */
-.pull--one-sixth, .pull--two-twelfths {
-  right: 16.666%;
-}
-
-.pull--five-sixths, .pull--ten-twelfths {
-  right: 83.333%;
-}
-
-/**
- * Eighths
- */
-.pull--one-eighth {
-  right: 12.5%;
-}
-
-.pull--three-eighths {
-  right: 37.5%;
-}
-
-.pull--five-eighths {
-  right: 62.5%;
-}
-
-.pull--seven-eighths {
-  right: 87.5%;
-}
-
-/**
- * Tenths
- */
-.pull--one-tenth {
-  right: 10%;
-}
-
-.pull--three-tenths {
-  right: 30%;
-}
-
-.pull--five-tenths {
-  right: 50%;
-}
-
-.pull--seven-tenths {
-  right: 70%;
-}
-
-.pull--nine-tenths {
-  right: 90%;
-}
-
-/**
- * Twelfths
- */
-.pull--one-twelfth {
-  right: 8.333%;
-}
-
-.pull--five-twelfths {
-  right: 41.666%;
-}
-
-.pull--seven-twelfths {
-  right: 58.333%;
-}
-
-.pull--eleven-twelfths {
-  right: 91.666%;
-}
-
 /*------------------------------------*\
     $BRAND
 \*------------------------------------*/
@@ -3836,31 +2575,252 @@ html.flexbox {
  * A series of helper classes to use arbitrarily. Only use a helper class if an
  * element/component doesnÔÇÖt already have a class to which you could apply this
  * styling, e.g. if you need to float `.main-nav` left then add `float:left;` to
- * that ruleset as opposed to adding the `.fl` class to the markup.
+ * that ruleset as opposed to adding the `.float--left` class to the markup.
+ *
+ * A lot of these classes carry `!important` as you will always want them to win
+ * out over other selectors.
  */
-.fr {
-  float: right;
+/**
+ * Add/remove floats
+ */
+.float--right {
+  float: right !important;
 }
 
-.fl {
-  float: left;
+.float--left {
+  float: left !important;
 }
 
-.text-center,
-.text-centre {
-  text-align: center;
+.float--none {
+  float: none !important;
+}
+
+/**
+ * Text alignment
+ */
+.text--left {
+  text-align: left !important;
+}
+
+.text--center {
+  text-align: center !important;
+}
+
+.text--right {
+  text-align: right !important;
+}
+
+/**
+ * Font weights
+ */
+.weight--light {
+  font-weight: 300 !important;
+}
+
+.weight--normal {
+  font-weight: 400 !important;
+}
+
+.weight--semibold {
+  font-weight: 600 !important;
+}
+
+/**
+ * Add/remove margins
+ */
+.push {
+  margin: 24px !important;
+}
+
+.push--top {
+  margin-top: 24px !important;
+}
+
+.push--right {
+  margin-right: 24px !important;
+}
+
+.push--bottom {
+  margin-bottom: 24px !important;
+}
+
+.push--left {
+  margin-left: 24px !important;
+}
+
+.push--ends {
+  margin-top: 24px !important;
+  margin-bottom: 24px !important;
+}
+
+.push--sides {
+  margin-right: 24px !important;
+  margin-left: 24px !important;
+}
+
+.push-half {
+  margin: 12px !important;
+}
+
+.push-half--top {
+  margin-top: 12px !important;
+}
+
+.push-half--right {
+  margin-right: 12px !important;
+}
+
+.push-half--bottom {
+  margin-bottom: 12px !important;
+}
+
+.push-half--left {
+  margin-left: 12px !important;
+}
+
+.push-half--ends {
+  margin-top: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+.push-half--sides {
+  margin-right: 12px !important;
+  margin-left: 12px !important;
+}
+
+.flush {
+  margin: 0 !important;
+}
+
+.flush--top {
+  margin-top: 0 !important;
+}
+
+.flush--right {
+  margin-right: 0 !important;
+}
+
+.flush--bottom {
+  margin-bottom: 0 !important;
+}
+
+.flush--left {
+  margin-left: 0 !important;
+}
+
+.flush--ends {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.flush--sides {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/**
+ * Add/remove paddings
+ */
+.soft {
+  padding: 24px !important;
+}
+
+.soft--top {
+  padding-top: 24px !important;
+}
+
+.soft--right {
+  padding-right: 24px !important;
+}
+
+.soft--bottom {
+  padding-bottom: 24px !important;
+}
+
+.soft--left {
+  padding-left: 24px !important;
+}
+
+.soft--ends {
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.soft--sides {
+  padding-right: 24px !important;
+  padding-left: 24px !important;
+}
+
+.soft-half {
+  padding: 12px !important;
+}
+
+.soft-half--top {
+  padding-top: 12px !important;
+}
+
+.soft-half--right {
+  padding-right: 12px !important;
+}
+
+.soft-half--bottom {
+  padding-bottom: 12px !important;
+}
+
+.soft-half--left {
+  padding-left: 12px !important;
+}
+
+.soft-half--ends {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+.soft-half--sides {
+  padding-right: 12px !important;
+  padding-left: 12px !important;
+}
+
+.hard {
+  padding: 0 !important;
+}
+
+.hard--top {
+  padding-top: 0 !important;
+}
+
+.hard--right {
+  padding-right: 0 !important;
+}
+
+.hard--bottom {
+  padding-bottom: 0 !important;
+}
+
+.hard--left {
+  padding-left: 0 !important;
+}
+
+.hard--ends {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.hard--sides {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 /**
  * Pull items full width of `.island` parents.
  */
 .full-bleed {
-  margin-right: -24px;
-  margin-left: -24px;
+  margin-right: -24px !important;
+  margin-left: -24px !important;
 }
 .islet .full-bleed {
-  margin-right: -12px;
-  margin-left: -12px;
+  margin-right: -12px !important;
+  margin-left: -12px !important;
 }
 
 /**
@@ -3868,127 +2828,242 @@ html.flexbox {
  * `:hover`.
  */
 .informative {
-  cursor: help;
+  cursor: help !important;
 }
 
 /**
  * Mute an object by reducing its opacity.
  */
 .muted {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
+  opacity: 0.5 !important;
+  filter: alpha(opacity=50) !important;
 }
 
 /**
  * Align items to the right where they imply progression/movement forward, e.g.:
- * 
+ *
    <p class=proceed><a href=#>Read more...</a></p>
- * 
+ *
  */
 .proceed {
-  text-align: right;
+  text-align: right !important;
 }
 
 /**
  * Add a right-angled quote to links that imply movement, e.g.:
- * 
+ *
    <a href=# class=go>Read more</a>
- * 
+ *
  */
 .go:after {
-  content: " ┬╗";
+  content: "\00A0┬╗" !important;
 }
 
 /**
  * Apply capital case to an element (usually a `strong`).
  */
 .caps {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 /**
- * Hide content off-screen without resorting to `display:none;`
+ * Hide content off-screen without resorting to `display:none;`, also provide
+ * breakpoint specific hidden elements.
  */
-.accessibility {
-  position: absolute;
-  left: -99999px;
-}
-
-[dir=rtl] .accessibility {
-  left: auto;
-  right: -99999px;
-}
-
-/**
- * Hide content based on breakpoint
- */
-.hide {
-  position: absolute;
-  left: -9999px;
+.accessibility,
+.visuallyhidden {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
 }
 
 @media only screen and (max-width: 480px) {
-  .hide--palm {
-    position: absolute;
-    left: -9999px;
+  .accessibility--palm,
+  .visuallyhidden--palm {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
   }
 }
 @media only screen and (min-width: 481px) and (max-width: 1023px) {
-  .hide--lap {
-    position: absolute;
-    left: -9999px;
+  .accessibility--lap,
+  .visuallyhidden--lap {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+  }
+}
+@media only screen and (min-width: 481px) {
+  .accessibility--lap-and-up,
+  .visuallyhidden--lap-and-up {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
   }
 }
 @media only screen and (max-width: 1023px) {
-  .hide--portable {
-    position: absolute;
-    left: -9999px;
+  .accessibility--portable,
+  .visuallyhidden--portable {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
   }
 }
 @media only screen and (min-width: 1024px) {
-  .hide--desk {
-    position: absolute;
-    left: -9999px;
+  .accessibility--desk,
+  .visuallyhidden--desk {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .accessibility--desk-wide,
+  .visuallyhidden--desk-wide {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
   }
 }
 /* endif */
 /**
- * She’s all yours, cap’n... Begin importing your stuff here. 
+ * my stuff
  */
 /* @import "ui/typecast";*/
-.banner h1 {
-  font-size: 2em;
-}
-
-body {
-  font-family: 'Trebuchet MS';
+html {
   background-color: #343838;
+  color: #ADADAD;
   font-style: normal;
   font-weight: 400;
 }
 
+h1, h2 {
+  font-family: "adelle", serif;
+  color: #00b4cc;
+}
+
 h1 {
-  font-size: 5.075em;
-  line-height: 83px;
-  margin-bottom: 18px;
-  color: #00B4CC;
-  text-transform: capitalize;
-  letter-spacing: -1px;
-  font-style: normal;
   font-weight: 800;
-  margin-top: 6px;
+  letter-spacing: -1px;
+  line-height: 42px;
+  margin-bottom: 18px;
+}
+@media only screen and (min-width: 481px) {
+  h1 {
+    font-size: 81px;
+    font-size: 5.0625rem;
+    line-height: 1.18519;
+    line-height: 83px;
+  }
 }
 
-.main-content {
-  width: 477px;
+h2 {
+  margin-top: 44px;
+  margin-bottom: 30px;
+  text-transform: capitalize;
+  font-size: 30px;
+  line-height: 25px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.banner {
-  float: left;
+blockquote {
+  margin-bottom: 15px;
+  margin-top: 10px;
+  font-size: 26px;
+  line-height: 50px;
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+  color: #00DFFC;
 }
 
-.main {
-  float: left;
+p {
+  margin-bottom: 0px;
+  text-indent: 16px;
+}
+
+.reading-width {
+  max-width: 477px;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.author {
+  font-style: italic;
+  text-indent: 0px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #005F6B;
+  margin-top: 0px;
+}
+
+.intro {
+  text-indent: 0px;
+  margin-bottom: 16px;
+  line-height: 25px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  color: #00B4CC;
+}
+@media only screen and (min-width: 481px) {
+  .intro {
+    font-size: 24px;
+    font-size: 1.5rem;
+    line-height: 1;
+    line-height: 50px;
+  }
+}
+
+.credits {
+  text-indent: 0px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #005F6B;
+  margin-top: 0px;
 }
 
 .main-nav ul {

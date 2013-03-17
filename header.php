@@ -14,19 +14,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/css/dannyt.css">
   <script src="<?php bloginfo( "template_url" ); ?>/js/libs/modernizr-2.0.6.min.js"></script>
-  <?php wp_head(); ?>
+  <?php wp_head(); ?>  
 </head>
 
 <body>
-  <header class="banner">
-    <nav>
-    <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 
-                                'container' => 'false', 
-                                'menu_class' => 'main-nav',
-                                'items_wrap' => '<ul id="%1$s" class="%2$s">'."\n".'%3$s    </ul>'."\n".'%0A',
-                                'walker' => new MV_Cleaner_Walker_Nav_Menu()) ); ?>
-    </nav>
-  </header>
+  <div class="grid">
   
-  <div role="main" class="main">
-    <div class="main-content">
+    <header class="grid__item one-whole desk-one-fifth">
+      <nav>
+      <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 
+                                  'container' => 'false', 
+                                  'menu_class' => 'main-nav',
+                                  'items_wrap' => '<ul id="%1$s" class="%2$s">'."\n".'%3$s    </ul>'."\n".'%0A',
+                                  'walker' => new MV_Cleaner_Walker_Nav_Menu()) ); ?>
+      </nav>
+    </header>
