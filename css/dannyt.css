@@ -200,7 +200,7 @@
  * Base stuff
  */
 /**
- * Base font-family. 
+ * Base font-family.
  */
 /**
  * Default colour for objectsÔÇÖ borders etc.
@@ -291,8 +291,8 @@
        }
     }
  *
- * With thanks to @lar_zzz, @paranoida and @rowanmanning for refining and
- * improving my initial mixin.
+ * With thanks to @lar_zzz, @paranoida, @rowanmanning and ultimately
+ * @thierrylemoulec for refining and improving my initial mixin.
  */
 /**
  * Create vendor-prefixed CSS in one go, e.g.
@@ -839,7 +839,7 @@ textarea:focus {
  * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
  * and over in your markup.
  */
-.cf:after {
+.cf:after, .nav:after {
   content: "";
   display: table;
   clear: both;
@@ -1048,30 +1048,30 @@ hgroup .hN {
  * Inline quotes.
  */
 q {
-  quotes: "ÔÇÿ" "ÔÇÖ" "ÔÇ£" "ÔÇØ";
+  quotes: "\2018" "\2019" "\201C" "\201D";
 }
 q:before {
-  content: "ÔÇÿ";
+  content: "\2018";
   content: open-quote;
 }
 q:after {
-  content: "ÔÇÖ";
+  content: "\2019";
   content: close-quote;
 }
 q q:before {
-  content: "ÔÇ£";
+  content: "\201C";
   content: open-quote;
 }
 q q:after {
-  content: "ÔÇØ";
+  content: "\201D";
   content: close-quote;
 }
 
 blockquote {
-  quotes: "ÔÇ£" "ÔÇØ";
+  quotes: "\201C" "\201D";
 }
 blockquote p:before {
-  content: "ÔÇ£";
+  content: "\201C";
   content: open-quote;
 }
 blockquote p:after {
@@ -1079,15 +1079,15 @@ blockquote p:after {
   content: no-close-quote;
 }
 blockquote p:last-of-type:after {
-  content: "ÔÇØ";
+  content: "\201D";
   content: close-quote;
 }
 blockquote q:before {
-  content: "ÔÇÿ";
+  content: "\2018";
   content: open-quote;
 }
 blockquote q:after {
-  content: "ÔÇÖ";
+  content: "\2019";
   content: close-quote;
 }
 
@@ -1115,7 +1115,7 @@ blockquote p:last-of-type {
   text-indent: 0;
 }
 .source:before {
-  content: "ÔÇö";
+  content: "\2014";
 }
 
 /*------------------------------------*\
@@ -1756,6 +1756,133 @@ label,
   width: 100%;
   padding-left: 24px;
   vertical-align: top;
+}
+
+/*------------------------------------*\
+    $NAV
+\*------------------------------------*/
+/**
+ * Nav abstraction as per: csswizardry.com/2011/09/the-nav-abstraction
+ * When used on an `ol` or `ul`, this class throws the list into horizontal mode
+ * e.g.:
+ *
+   <ul class=nav>
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ * Demo: jsfiddle.net/inuitcss/Vnph4
+ *
+ */
+.nav {
+  list-style: none;
+  margin-left: 0;
+}
+.nav > li,
+.nav > li > a {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+/**
+ * `.nav--stacked` extends `.nav` and throws the list into vertical mode, e.g.:
+ *
+   <ul class="nav  nav--stacked">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+.nav--stacked > li {
+  display: list-item;
+}
+.nav--stacked > li > a {
+  display: block;
+}
+
+/**
+ * `.nav--banner` extends `.nav` and centres the list, e.g.:
+ *
+   <ul class="nav  nav--banner">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+.nav--banner {
+  text-align: center;
+}
+
+/**
+ * Give nav links a big, blocky hit area. Extends `.nav`, e.g.:
+ *
+   <ul class="nav  nav--block">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+.nav--block {
+  line-height: 1;
+  /**
+   * Remove whitespace caused by `inline-block`.
+   */
+  letter-spacing: -0.31em;
+  word-spacing: -0.43em;
+  white-space: nowrap;
+}
+.nav--block > li {
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+.nav--block > li > a {
+  padding: 12px;
+}
+
+/**
+ * Force a nav to occupy 100% of the available width of its parent. Extends
+ * `.nav`, e.g.:
+ *
+   <ul class="nav  nav--fit">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ * Thanks to @pimpl for this idea!
+ */
+.nav--fit {
+  display: table;
+  width: 100%;
+}
+.nav--fit > li {
+  display: table-cell;
+}
+.nav--fit > li > a {
+  display: block;
+}
+
+/**
+ * Make a list of keywords. Extends `.nav`, e.g.:
+ *
+   `<ul class="nav  nav--keywords>`
+ *
+ */
+.nav--keywords > li:after {
+  content: "\002C" "\00A0";
+}
+.nav--keywords > li:last-child:after {
+  display: none;
 }
 
 /**
@@ -2856,7 +2983,7 @@ label,
  *
  */
 .go:after {
-  content: "\00A0┬╗" !important;
+  content: "\00A0" "\00BB" !important;
 }
 
 /**
@@ -2964,15 +3091,19 @@ label,
 /**
  * my stuff
  */
-/* @import "ui/typecast";*/
+/**
+* dictates breakpoints based on appropriate design changes
+* - full-reading-width: the main content area is now wide enough for the ideal reading width (477px)
+*/
 html {
   background-color: #343838;
   color: #ADADAD;
   font-style: normal;
   font-weight: 400;
+  padding: 24px;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: "adelle", serif;
   color: #00b4cc;
 }
@@ -2982,8 +3113,9 @@ h1 {
   letter-spacing: -1px;
   line-height: 42px;
   margin-bottom: 18px;
+  text-shadow: 2px 2px 2px #005F6B;
 }
-@media only screen and (min-width: 481px) {
+@media (min-width: 477px) {
   h1 {
     font-size: 81px;
     font-size: 5.0625rem;
@@ -3001,6 +3133,13 @@ h2 {
   letter-spacing: 1px;
   font-weight: 400;
   font-style: normal;
+}
+
+a {
+  color: #00b4cc;
+}
+a:hover {
+  text-decoration: none;
 }
 
 blockquote {
@@ -3028,6 +3167,10 @@ p {
   margin-right: auto;
 }
 
+.center-text {
+  text-align: center;
+}
+
 .author {
   font-style: italic;
   text-indent: 0px;
@@ -3048,7 +3191,7 @@ p {
   letter-spacing: 0px;
   color: #00B4CC;
 }
-@media only screen and (min-width: 481px) {
+@media (min-width: 477px) {
   .intro {
     font-size: 24px;
     font-size: 1.5rem;
@@ -3064,6 +3207,28 @@ p {
   letter-spacing: 1px;
   color: #005F6B;
   margin-top: 0px;
+}
+
+.main-nav {
+  text-align: center;
+}
+@media only screen and (min-width: 1024px) {
+  .main-nav {
+    text-align: right;
+  }
+}
+
+.social-nav {
+  text-align: center;
+}
+@media only screen and (min-width: 1024px) {
+  .social-nav {
+    text-align: left;
+  }
+}
+
+.no-marker {
+  list-style-type: none;
 }
 
 .main-nav ul {

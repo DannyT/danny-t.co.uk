@@ -1,8 +1,18 @@
-  </div>
-  
-  <footer>
+  --><footer class="grid__item one-whole desk-one-fifth">
+    <nav class="centered">
+        <ul class="social-nav no-marker nav  nav--block">
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Github</a></li>
+        </ul>
+      <?php /* wp_nav_menu( array( 'theme_location' => 'header-menu', 
+                                  'container' => 'false', 
+                                  'menu_class' => 'main-nav no-marker nav  nav--fit',
+                                  'items_wrap' => '<ul id="%1$s" class="%2$s">'."\n".'%3$s    </ul>'."\n".'%0A',
+                                  'walker' => new MV_Cleaner_Walker_Nav_Menu()) ); */ ?>
 
-  </footer>
+      </nav>
+    </footer>
+  </div>
   <?php wp_footer(); ?>
 
   <!-- JavaScript at the bottom for fast page loading -->

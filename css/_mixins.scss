@@ -1,0 +1,10 @@
+/**
+* dictates breakpoints based on appropriate design changes
+* - full-reading-width: the main content area is now wide enough for the ideal reading width (477px)
+*/
+
+@mixin breakpoint($point) {
+  @if $point == full-reading-width {
+    @media (min-width: 477px) { @content; }
+  }
+}
