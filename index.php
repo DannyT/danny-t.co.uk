@@ -1,6 +1,10 @@
 <?php get_header(); ?>
+	<header class="center-text">
+    	<h1>Danny-T.co.uk</h1>
+    	<p class="credits">Ramblings on business, web, mobile and all things digital</p>
+    </header>
     <?php while ( have_posts() ) : the_post() ?>
-<article>
+	<article class="reading-width centered">
 	<h2><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'dannyt' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 	<div class="publish-date">
 		<span class="day-of-month"><?php the_time('d') ?></span>

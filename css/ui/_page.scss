@@ -26,13 +26,19 @@ h1 {
 
 h2 {
     margin-top: 44px;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
     text-transform: capitalize;
     font-size: 30px;
-    line-height: 25px;
+    line-height: 32px;
     letter-spacing: 1px;
     font-weight: 400;
     font-style: normal;
+    a {
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
 }
 
 a {
@@ -54,8 +60,14 @@ blockquote {
 }
 
 p {
-    margin-bottom: 0px;
     text-indent: 16px;
+}
+
+img{
+    display: block;
+    margin: 0 auto;
+    max-width: 98%;
+    height: auto;
 }
 
 .reading-width {
@@ -121,4 +133,41 @@ p {
 
 .no-marker{
     list-style-type:none;
+}
+
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.625em;
+}
+
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.625em;
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption {
+    margin-bottom: 1.625em;
+    max-width: 96%;
+    padding: 9px;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+.smallquote{
+    margin-bottom: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    font-style: italic;
+    font-weight: 200;
+    text-align: center;
+    color: #00DFFC;
 }

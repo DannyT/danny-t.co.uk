@@ -22,15 +22,12 @@
   
     <header class="grid__item one-whole desk-one-fifth">
       <nav class="centered">
-        <ul class="main-nav no-marker nav nav--block">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-        </ul>
-      <?php /* wp_nav_menu( array( 'theme_location' => 'header-menu', 
+      <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 
                                   'container' => 'false', 
-                                  'menu_class' => 'main-nav no-marker nav  nav--fit',
+                                  'menu_class' => 'main-nav no-marker nav nav--block',
                                   'items_wrap' => '<ul id="%1$s" class="%2$s">'."\n".'%3$s    </ul>'."\n".'%0A',
-                                  'walker' => new MV_Cleaner_Walker_Nav_Menu()) ); */ ?>
+                                  'walker' => new MV_Cleaner_Walker_Nav_Menu()) ); ?>
 
       </nav>
     </header><!--
+--><div class="grid__item one-whole desk-three-fifths">
