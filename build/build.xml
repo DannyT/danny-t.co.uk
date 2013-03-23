@@ -1,3 +1,342 @@
-<project name="danny-t.co.uk" default="default" basedir="../">
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project name="danny-t.co.uk" default="build" basedir="../">
 
+    <!-- load shell environment -->
+    <property environment="ENV" />
+
+    <property file="build/config/project.properties"/>
+
+
+    <!-- load in Ant-Contrib to give us access to some very useful tasks! -->
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="${tools.dir}/ant-contrib/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+
+    <target name="build" depends="-clean, -prepare, -copytointermediate, -css, -js, -googleanalytics, -publish, -imagespng, -imagesjpg, -imageslosslessly, -removeintermediate" />
+
+    <!--
+        Converts any .png or .jpg images that are inside the images directory to
+        .webp images. Read more about webp from the link below.
+
+        - https://developers.google.com/speed/webp/
+    -->
+    <target name="webp" depends="-webp" />
+
+     <!--
+        performs linting on all the js.
+    -->
+    <target name="jslint">
+        <apply dir="${project.dir}/${js.dir}" executable="java" failonerror="true">
+            <fileset dir="${project.dir}/${js.dir}">
+                <exclude name="**/libs/**" />
+                <include name="*.js" />
+            </fileset>
+            <arg value="-jar" />
+            <arg path="${tool.rhino}" />
+            <arg path="${tool.jslint}" />
+            <srcfile />
+            <arg value="${tool.jslint.opts}" />
+            <arg value="${tool.jslint.global}" />
+        </apply>
+    </target>
+
+	<!--
+		deletes the artifacts generated from the previous build,
+		if there is one.
+	-->
+	<target name="-clean" >
+      	<delete dir="${deploy.dir}" />
+  	</target>
+
+  	<!--
+		creates any directories that will be required during the
+		build process.
+  	-->
+  	<target name="-prepare">
+		<mkdir dir="${deploy.dir}" />
+  	</target>
+
+  	<!--
+  		Copies the web project into an intermediate location
+  		so we can modify files to speed up js, img & css loading
+  	-->
+  	<target name="-copytointermediate">
+		<copy todir="${intermediate.dir}">
+            <fileset dir="${project.dir}" excludes="${file.default.exclude}" />
+        </copy>
+  	</target>
+
+    <target name="-css" depends="-css.concat, -css.min, -css.cache" />
+
+    <!--
+        Concats all the css files into a single css file for improved
+        page load. All the css files that have been concatenated are stripped
+        from the specified page files.
+    -->
+    <target name="-css.concat">
+        <for param="css.file" parallel="true" list="${included.stylesheets}">
+            <sequential>
+                <concat destfile="${intermediate.dir}/${css.dir}/${default.stylesheets.file}" append="yes">
+                    <filelist dir="${intermediate.dir}/${css.dir}" files="@{css.file}"/>
+                </concat>
+            </sequential>
+        </for>
+
+        <foreach list="${included.stylesheets}" param="css_file" target="-css-remove-concatenated-stylesheets" />
+    </target>
+
+    <!--
+        Minifies the concatenated css file.
+    -->
+    <target name="-css.min">
+        <apply executable="java" parallel="false">
+            <fileset dir="${intermediate.dir}/${css.dir}" includes="${default.stylesheets.file}" />
+            <arg line="-jar"/>
+            <arg path="${tool.yuicompressor}"/>
+            <srcfile/>
+            <arg line="--type css"/>
+            <arg line="-o"/>
+            <mapper type="merge" to="${intermediate.dir}/${css.dir}/style.min.css"/>
+            <targetfile/>
+        </apply>
+    </target>
+
+    <!--
+        Changes the name of the name of the concatenated css file to ensure that any
+        changes made to the stylesheet are presented to the user. The minified version
+        of the stylesheet is given a randomly generated new name and the <link> tag
+        to the main stylesheet file is changed to point at the renamed stylesheet.
+    -->
+    <target name="-css.cache">
+        <checksum file="${intermediate.dir}/${css.dir}/style.min.css" algorithm="sha" property="css.fullsha" />
+        <propertyregex property="css.sha" input="${css.fullsha}" regexp=".{${hash.length}}" select="\0" />
+        <property name="style.css" value="${css.dir}/${css.sha}.css" />
+        <copy file="${intermediate.dir}/${css.dir}/style.min.css" tofile="${intermediate.dir}/${css.dir}/${css.sha}.css" />
+
+        <replaceregexp  match="&lt;link(.+)href=['&quot;]?(.*)/${default.stylesheets.file}(?:\?.*)?['&quot;\s]?(.*/?&gt;)"
+                        replace="&lt;link\1href='\2/css/${css.sha}.css'\3" flags="m">
+            <fileset dir="${intermediate.dir}" includes="${page-files}"/>
+        </replaceregexp>
+
+        <delete includeemptydirs="true">
+            <fileset dir="${intermediate.dir}/${css.dir}" excludes="${css.sha}.css" />
+        </delete>
+    </target>
+
+    <!--
+        Removes the stylesheets that have been included
+        into the concatenated stylesheets.
+    -->
+    <target name="-css-remove-concatenated-stylesheets">
+        <replaceregexp match="&lt;link.+href=&quot;.*${css_file}&quot;.*&gt;" replace=" " byline="true">
+            <fileset dir="${intermediate.dir}" includes="${page-files}"/>
+        </replaceregexp>
+    </target>
+
+    <target name="-js" depends="-js.concat, -js.min, -js.cache" />
+
+    <!--
+        Minifies the concatenateed javascript file.
+    -->
+    <target name="-js.min">
+        <apply executable="java" parallel="false">
+            <fileset dir="${intermediate.dir}/${js.dir}" includes="${default.js.file}"/>
+            <arg line="-jar"/>
+            <arg path="${tool.yuicompressor}"/>
+            <srcfile/>
+            <arg line="--type js"/>
+            <arg line="-o"/>
+            <mapper type="merge" to="${intermediate.dir}/${js.dir}/scripts-concat.min.js"/>
+            <targetfile/>
+        </apply>
+    </target>
+
+    <!--
+        Concats all the js files that are inside the page files specified. These
+        js files are placed into a single file scripts.js file that is then copied
+        into a file with a cache buster name that is generated using the checksum.
+    -->
+    <target name="-js.concat">
+        <filelist id="file.root" dir="${intermediate.dir}" files="${page-files}" />
+
+        <apply executable="java" parallel="false" outputproperty="scripts.ordered">
+            <arg value="-cp"/>
+            <arg value="${tools.dir}/misc/" />
+            <arg value="ScriptsToConcat"/>
+            <first>
+                <filelist refid="file.root"/>
+            </first>
+        </apply>
+
+        <for param="each.file" parallel="false" list="${scripts.ordered}">
+            <sequential>
+                <!-- removes the php for getting the template directory -->
+                <propertyregex property="js.file"
+                               input="@{each.file}"
+                               regexp=".*\?php bloginfo\('template_url'\); \?>/"
+                               replace=""
+                               global="true" />
+
+                <concat destfile="${intermediate.dir}/${js.dir}/${default.js.file}" append="yes">
+                    <filelist dir="${intermediate.dir}" files="${js.file}"/>
+                </concat>
+            </sequential>
+        </for>
+
+        <!--
+        <for param="js.file" parallel="true" list="${included.js}">
+            <sequential>
+                <concat destfile="${intermediate.dir}/${js.dir}/${default.js.file}" append="yes">
+                    <filelist dir="${intermediate.dir}/${js.dir}" files="@{js.file}"/>
+                </concat>
+            </sequential>
+        </for>-->
+    </target>
+
+    <!--
+        Changes the name of the main concatenated scripts file to ensure that any
+        the primary javascript file is never loaded from cached when a release is pushed.
+        The collection of javascript files in between the marker comments are removed and
+        replaced with the name of the new cache busting java script file.
+    -->
+    <target name="-js.cache">
+        <checksum file="${intermediate.dir}/${js.dir}/scripts-concat.min.js" algorithm="sha" property="scripts.fullsha" />
+        <propertyregex property="scripts.sha" input="${scripts.fullsha}" regexp=".{${hash.length}}" select="\0" />
+        <property name="scripts.js" value="${intermediate.dir}/${js.dir}/${scripts.sha}.js" />
+        <copy file="${intermediate.dir}/${js.dir}/scripts-concat.min.js" tofile="${intermediate.dir}/${js.dir}/${scripts.sha}.js" />
+
+        <var name="matchRegex" value="&lt;!-- scripts concatenated [\d\w\s\W]*[\d\w\s\W]*&lt;!-- end ((scripts)|(concatenated and minified scripts))\s*--&gt;" />
+        <var name="replaceRegex" value="&lt;script src='&lt;?php bloginfo('template_url'); ?&gt;/${js.dir}/${scripts.sha}.js\'&gt;&lt;/script&gt;" />
+
+        <replaceregexp match="${matchRegex}" replace="${replaceRegex}" flags="m">
+            <fileset dir="${intermediate.dir}" includes="${page-files}"/>
+        </replaceregexp>
+
+        <delete includeemptydirs="true">
+            <fileset dir="${intermediate.dir}/${js.dir}" excludes="${scripts.sha}.js,libs/*" />
+        </delete>
+    </target>
+
+    <!--
+        publishes the intermediate project into a working website.
+    -->
+    <target name="-publish">
+        <copy todir="${publish.dir}" includeEmptyDirs="false">
+            <fileset dir="${intermediate.dir}" />
+        </copy>
+
+        <!-- removes the sass cache from the distrubatable. -->
+        <delete dir="${publish.dir}/.sass-cache" />
+    </target>
+
+    <!--
+        Optimises all the PNG images to reduce their file size, this
+        may take a while depending on how many images there are.
+    -->
+    <target name="-imagespng">
+         <if>
+            <equals arg1="${images.strip.metadata}" arg2="true"/>
+            <then>
+                <var name="strip-meta-tags" value="-strip all"/>
+            </then>
+            <else>
+                <var name="strip-meta-tags" value=""/>
+            </else>
+        </if>
+
+        <delete>
+            <fileset dir="${publish.dir}/${images.dir}/">
+                <include name="**/*.png"/>
+            </fileset>
+        </delete>
+
+        <apply executable="${tools.optipng}" dest="${publish.dir}/${images.dir}/" osfamily="windows">
+            <fileset dir="${intermediate.dir}/${images.dir}/" includes="**/*.png"  excludes="${images.bypass}, ${images.default.bypass}"/>
+            <arg value="-quiet"/>
+            <arg value="-o7"/>
+             <arg value="${strip-meta-tags}"/>
+            <arg value="-out"/>
+            <targetfile/>
+            <srcfile/>
+            <mapper type="identity"/>
+        </apply>
+    </target>
+
+    <!--
+        Optimises all the JPG images to reduce their file size.
+    -->
+    <target name="-imagesjpg">
+         <if>
+            <equals arg1="${images.strip.metadata}" arg2="true"/>
+            <then>
+                <var name="strip-meta-tags" value="none"/>
+            </then>
+            <else>
+                <var name="strip-meta-tags" value="all"/>
+            </else>
+        </if>
+
+        <apply executable="${tools.jpegtran}" dest="${publish.dir}/${images.dir}/" osfamily="windows">
+            <fileset dir="${intermediate.dir}/${images.dir}/" includes="**/*.jpg"  excludes="${images.bypass}, ${images.default.bypass}"/>
+            <arg value="-copy"/>
+            <arg value="${strip-meta-tags}"/>
+            <arg value="-optimize"/>
+            <arg value="-outfile"/>
+            <targetfile/>
+            <srcfile/>
+            <mapper type="identity"/>
+        </apply>
+    </target>
+
+    <!--
+        Optimises all the images with losslessly compression.
+    -->
+    <target name="-imageslosslessly">
+        <java  jar="${tool.smushit}"
+               fork="true"
+               failonerror="false"
+               maxmemory="128m">
+            <arg value="-imageDir=${intermediate.dir}/${images.dir}"/>
+            <arg value="-verbose=true" />
+            <arg value="-imgExtensions=png,jpeg,jpg" />
+       </java>
+    </target>
+
+    <!--
+        Converts all images in the images directory to .webp format.
+    -->
+    <target name="-webp">
+        <apply executable="${tool.cwebp}" dest="${project.dir}/${images.dir}" parallel="false">
+            <srcfile/>
+            <arg value="-o"/>
+            <targetfile/>
+            <fileset dir="${project.dir}/${images.dir}">
+                <patternset>
+                    <include name="*.png"/>
+                </patternset>
+            </fileset>
+            <mapper type="glob" from="*.png" to="*.webp"/>
+        </apply>
+    </target>
+
+    <!--
+        Removes the intermediate directory that was used to configure
+        the js, css, html & images so they are ready for a production
+        release.
+    -->
+    <target name="-removeintermediate">
+        <delete dir="${intermediate.dir}" />
+    </target>
+
+    <!--
+        Replaces the dummy google analytics code with the real one.
+    -->
+    <target name="-googleanalytics">
+        <replaceregexp match="UA-XXXXX-X" replace="${googleanalytics.code}" flags="m">
+            <fileset dir="${intermediate.dir}" includes="${page-files}"/>
+        </replaceregexp>
+    </target>
 </project>
