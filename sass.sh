@@ -5,8 +5,8 @@
 # simply run `sh watch.sh`.
 
 # No minification
-sass --watch css/style.scss:css/dannyt.css --style expanded
+#sass --watch css/style.scss:css/dannyt.css --style expanded
 
-#sass --watch css/style.scss:css/dannyt.css --style compressed
+sass --watch css/style.scss:css/dannyt.css --style compressed
 
 exit 0

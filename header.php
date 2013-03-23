@@ -12,7 +12,10 @@
   <title><?php bloginfo( 'description' ); ?></title>
   <meta name="description" content="<?php bloginfo( 'name' ); ?>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/style.css" />
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/css/dannyt.css">
+
   <script src="<?php bloginfo( "template_url" ); ?>/js/libs/modernizr-2.0.6.min.js"></script>
   <?php wp_head(); ?>  
 </head>

@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-	--><div class="grid__item one-whole desk-three-fifths">
 		<?php while ( have_posts() ) : the_post() ?>
 			<article class="reading-width centered">
 				<header>
@@ -15,5 +14,4 @@
 				<?php wp_link_pages(); ?>
 			</article>
 		<?php endwhile ?>
-	</div><!--	
 <?php get_footer(); ?>
