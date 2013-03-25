@@ -6,9 +6,13 @@ html {
     padding: $base-spacing-unit;
 }
 
+.wf-loading h1, .wf-inactive h1{
+    font-weight: 800;
+    letter-spacing: -5px;
+}   
 
 @include headings(1, 3){
-    font-family: "adelle", serif;
+    font-family: "adelle", "Arial Black";
     color: $brand-color;
 }
 
